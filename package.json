@@ -1,0 +1,42 @@
+{
+  "name": "my-folio",
+  "version": "1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.13.0",
+    "framer-motion": "^12.4.7",
+    "gsap": "^3.12.7",
+    "next": "15.2.0",
+    "ogl": "^1.0.11",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.54.2",
+    "react-icons": "^5.5.0",
+    "react-switch": "^7.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.0",
+    "eslint": "^9.21.0",
+    "eslint-config-next": "15.2.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "core-js",
+      "core-js-pure",
+      "ejs",
+      "es5-ext",
+      "sharp"
+    ],
+    "ignoredBuiltDependencies": [
+      "node-sass"
+    ]
+  }
+}

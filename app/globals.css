@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cyberpunk&display=swap');
+@import url('https://fonts.cdnfonts.com/css/beon-2');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  /* Prevent horizontal overflow */
+  overflow-y: auto;
+  /* Allow vertical scrolling */
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cyberpunk', sans-serif;
+  background-color: #0f0f0f;
+  /* Dark background */
+  color: #ffffff;
+  /* Default text color */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 0;
+}
+
+.neon {
+  background-color: #1a1a1a;
+  /* Neon background */
+  color: #00ff00;
+  /* Neon text color */
+  /* text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff; */
+}
+
+.dark {
+  background-color: #1a202c;
+  /* Dark theme background color */
+  color: #cbd5e0;
+  /* Light gray text color */
+}
+
+body.neon p,
+body.neon a {
+  color: #00ff00;
+  /* Neon text color for paragraphs and links */
+  text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+}
+
+body.dark p,
+body.dark a {
+  color: #cbd5e0;
+  /* Light gray text color for paragraphs and links */
+}
+
+a {
+  position: relative;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+body.neon h1,
+body.neon h2,
+body.neon h3,
+body.neon h4,
+body.neon h5,
+body.neon h6 {
+  color: #00ff00;
+  /* Neon text color for headings */
+  text-shadow: 0 0 5px #fa0240, 0 0 10px #fa0240, 0 0 20px #fa0240;
+}
+
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark h5,
+body.dark h6 {
+  color: #cbd5e0;
+  /* Light gray text color for headings */
+}
+
+.dock-container {
+  position: fixed;
+  width: 100%;
+  z-index: 9;
+  bottom: 10vh;
+}
+
+.portfolioLaptop {
+  border: 2px solid #d6dee7;
+}
+
+.neon .portfolioLaptop {
+  border: 2px solid #0ff;
+  box-shadow: 0 0 10px #0ff, 0 0 12px #0ff, 0 0 15px #0ff, 0 0 17px #0ff, 0 0 20px #0ff, 0 0 22px #0ff, 0 0 25px #0ff;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.neon:hover .portfolioLaptop:hover {
+  box-shadow: 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff, 0 0 50px #0ff, 0 0 60px #0ff, 0 0 70px #0ff, 0 0 80px #0ff;
+}
+
+@media (max-width: 768px) {
+  .dock-container {
+    bottom: 2vh;
+  }
+}
+
+/* Social Container */
+.neon .socialContainerr {
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.8),
+    0 0 30px rgba(0, 255, 255, 0.6),
+    0 0 45px rgba(0, 255, 255, 0.4);
+  border: 2px solid rgba(0, 255, 255, 0.8);
+}
+
+.dark .socialContainerr {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Form Neon Mode Config */
+.neon .formm {
+  color: #0ff;
+  box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
+}
+
+/* Dock Neon Config */
+.neon .dock-panel {
+  box-shadow: 0 0 15px rgba(81, 255, 0, 0.8),
+    0 0 30px rgba(0, 255, 255, 0.6),
+    0 0 45px rgba(0, 255, 255, 0.4);
+  border: 2px solid rgba(0, 4, 255, 0.8);
+}
+
+/* Request CV */
+.neon .cvBox {
+  box-shadow: 0 0 10px #00ff00, 0 0 20px #ff0800; /* Neon effect */
+  transition: box-shadow 0.3s ease;
+}
+
+.neon .cvBox:hover {
+  box-shadow: 0 0 20px #00ff00, 0 0 40px #ff0800; /* Stronger neon effect on hover */
+}
+
+.dark .cvBox {
+  box-shadow: 0 0 10px #cbd5e0; /* Light gray shadow */
+  transition: box-shadow 0.3s ease;
+}
+
+.dark .cvBox:hover {
+  box-shadow: 0 0 20px #cbd5e0; /* Stronger light gray shadow on hover */
+}
+
+/* Skill neon effect  */
+.neon .titlee {
+  text-shadow: 0 0 5px #8a2be2, 0 0 10px #8a2be2, 0 0 15px #8a2be2, 0 0 20px #8a2be2;
+}
+
+.neon .boxShadowrr {
+  box-shadow: 0 0 5px #8a2be2, 0 0 10px #8a2be2, 0 0 20px #8a2be2;
+}

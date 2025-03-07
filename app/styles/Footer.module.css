@@ -1,0 +1,11 @@
+.footer {
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .footer.hidden {
+    transform: translateY(100%);
+  }
+  
+  .footer.visible {
+    transform: translateY(0);
+  }
