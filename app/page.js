@@ -29,10 +29,10 @@ export default function Home() {
       const width = window.innerWidth;
       if (width < 576) {
         // Extra small devices (phones, less than 576px)
-        setMarginTop('200vh');
+        setMarginTop('150vh');
       } else if (width >= 576 && width < 768) {
         // Small devices (tablets, 576px and up)
-        setMarginTop('250vh');
+        setMarginTop('200vh');
       } else if (width >= 576 && width < 768) {
         // Small devices (tablets, 576px and up)
         setMarginTop('200vh');
