@@ -121,6 +121,12 @@ function LaptopComponent({ images, link, alt, title }) {
                 type: "x,y",
                 edgeResistance: 0.65,
                 inertia: true,
+                allowEventDefault: true,
+                onClick: function (e) {
+                    if (!this.isDragging) {
+                        handleIndicatorClick(e);
+                    }
+                },
                 onDragEnd: function () {
                     gsap.to(laptopRef.current, {
                         x: 0,
@@ -146,7 +152,6 @@ function LaptopComponent({ images, link, alt, title }) {
     }, []);
 
     const handleIndicatorClick = (e) => {
-        // Stop event from propagating to Link component
         e.stopPropagation();
 
         setPowerIndicator('yellow');
@@ -169,9 +174,8 @@ function LaptopComponent({ images, link, alt, title }) {
 
     return (
         <div
-            //ref={laptopRef}
+            ref={laptopRef}
             className="portfolioLaptop relative w-full max-w-xs bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-700 cursor-pointer mx-auto"
-            onClick={handleIndicatorClick}
         >
             {/* Circular Camera */}
             <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gray-600 rounded-full border-2 border-gray-400"></div>
@@ -201,21 +205,23 @@ function LaptopComponent({ images, link, alt, title }) {
                     ref={indicatorRef}
                     className="power-indicator w-6 h-2 rounded-full absolute"
                     style={{ backgroundColor: powerIndicator, right: '1rem', bottom: '0.3rem' }}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        handleIndicatorClick(e);
+                    }}
                 ></div>
             </div>
             <Link
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
                 className="block touch-auto"
             >
                 <div
                     className="flex items-center justify-center text-center w-full mt-4 font-bold p-2 cursor-pointer hover:text-blue-500 transition-colors"
                     role="button"
                     tabIndex={0}
-                    onTouchStart={(e) => e.stopPropagation()}
-                    onTouchEnd={(e) => e.stopPropagation()}
+                    onClick={(e) => e.stopPropagation()}
                 >
                     {title}
                 </div>
