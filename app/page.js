@@ -56,7 +56,13 @@ export default function Home() {
         type: "x,y",
         edgeResistance: 0.65,
         bounds: window,
-        inertia: true
+        inertia: true,
+        allowEventDefault: true,
+        onClick: function (e) {
+          if (!this.isDragging) {
+            scrollToSection(item.to);
+          }
+        },
       });
     }
   }, []);
@@ -84,7 +90,7 @@ export default function Home() {
           particleSpread={10}
           speed={0.1}
           particleBaseSize={200}
-          moveParticlesOnHover={false}
+          moveParticlesOnHover={true}
           alphaParticles={true}
           disableRotation={false}
         />
@@ -110,7 +116,13 @@ export default function Home() {
             items={items.map(item => ({
               ...item,
               icon: (
-                <div onClick={() => scrollToSection(item.to)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div
+                  onClick={(e) => {
+                        e.stopPropagation();
+                        scrollToSection(item.to);
+                    }}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                >
                   {item.icon}
                 </div>
               )
