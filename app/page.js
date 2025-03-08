@@ -29,7 +29,7 @@ export default function Home() {
       const width = window.innerWidth;
       if (width < 576) {
         // Extra small devices (phones, less than 576px)
-        setMarginTop('400vh');
+        setMarginTop('200vh');
       } else if (width >= 576 && width < 768) {
         // Small devices (tablets, 576px and up)
         setMarginTop('250vh');
@@ -98,8 +98,8 @@ export default function Home() {
             <Skills ref={skillRefs} />
           </Blackboard>
         </div>
-        {/*<div style={{ marginTop: `${marginTop}` }}></div>*/}
-        <div id="portfolio" className="flex container">
+        <div style={{ marginTop: `${marginTop}` }}></div>
+        <div id="portfolio">
           <Portfolio />
         </div>
         <div id="contact">
