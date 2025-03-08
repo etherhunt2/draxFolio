@@ -169,7 +169,7 @@ function LaptopComponent({ images, link, alt, title }) {
 
     return (
         <div
-            ref={laptopRef}
+            //ref={laptopRef}
             className="portfolioLaptop relative w-full max-w-xs bg-gray-800 rounded-xl p-4 shadow-lg border border-gray-700 cursor-pointer mx-auto"
             onClick={handleIndicatorClick}
         >
