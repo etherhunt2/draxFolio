@@ -145,7 +145,14 @@ function LaptopComponent({ images, link, alt, title }) {
         }
     }, []);
 
+<<<<<<< HEAD
     const handleIndicatorClick = () => {
+=======
+    const handleIndicatorClick = (e) => {
+        // Stop event from propagating to Link component
+        e.stopPropagation();
+
+>>>>>>> 87eb1dc (Laptop Click Fix)
         setPowerIndicator('yellow');
         gsap.to(indicatorRef.current, {
             x: -240,
@@ -200,8 +207,25 @@ function LaptopComponent({ images, link, alt, title }) {
                     style={{ backgroundColor: powerIndicator, right: '1rem', bottom: '0.3rem' }}
                 ></div>
             </div>
+<<<<<<< HEAD
             <Link href={link} target="_blank" rel="noopener noreferrer">
                 <div className="flex items-center justify-center text-center w-full mt-4 font-bold">
+=======
+            <Link
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="block touch-auto"
+            >
+                <div
+                    className="flex items-center justify-center text-center w-full mt-4 font-bold p-2 cursor-pointer hover:text-blue-500 transition-colors"
+                    role="button"
+                    tabIndex={0}
+                    onTouchStart={(e) => e.stopPropagation()}
+                    onTouchEnd={(e) => e.stopPropagation()}
+                >
+>>>>>>> 87eb1dc (Laptop Click Fix)
                     {title}
                 </div>
             </Link>
