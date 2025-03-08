@@ -9,3 +9,9 @@
   .footer.visible {
     transform: translateY(0);
   }
+
+@media (max-width: 768px) {
+  .socialBox {
+    display: none; /* Hide text on mobile devices */
+  }
+}
