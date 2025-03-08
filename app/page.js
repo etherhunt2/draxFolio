@@ -29,17 +29,13 @@ export default function Home() {
       const width = window.innerWidth;
       if (width < 576) {
         // Extra small devices (phones, less than 576px)
-<<<<<<< HEAD
         setMarginTop('400vh');
       } else if (width >= 576 && width < 768) {
         // Small devices (tablets, 576px and up)
-        setMarginTop('400vh');
-=======
         setMarginTop('250vh');
       } else if (width >= 576 && width < 768) {
         // Small devices (tablets, 576px and up)
         setMarginTop('200vh');
->>>>>>> 87eb1dc (Laptop Click Fix)
       } else if (width >= 768 && width < 992) {
         // Medium devices (desktops, 768px and up)
         setMarginTop('190vh');
