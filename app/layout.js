@@ -3,7 +3,6 @@
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import { ThemeProvider } from '@/context/ThemeContext';
-import Footer from '@/components/Footer';
 import Loader from '@/components/Loader/Loader';
 import { useEffect, useState } from 'react';
 
@@ -35,7 +34,6 @@ export default function RootLayout({ children }) {
           {loading && <Loader />}
           <Navbar />
           {children}
-          <Footer />
         </ThemeProvider>
       </body>
     </html>
