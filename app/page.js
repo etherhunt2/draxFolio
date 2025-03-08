@@ -99,7 +99,7 @@ export default function Home() {
           </Blackboard>
         </div>
         {/*<div style={{ marginTop: `${marginTop}` }}></div>*/}
-        <div id="portfolio">
+        <div id="portfolio" className="flex container">
           <Portfolio />
         </div>
         <div id="contact">
