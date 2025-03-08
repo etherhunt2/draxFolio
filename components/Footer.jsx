@@ -20,7 +20,7 @@ const Footer = () => {
               &copy; 2022 Sharnagat Yogesh. All rights reserved.
             </p>
           </div>
-          <div className='flex md:flex-col items-center justify-center'>
+          <div className={`${styler.socialBox} flex md:flex-col items-center justify-center`}>
             <div className={`${styles.socialContainer} socialContainerr px-5`}>
               <Link href="https://www.instagram.com/raising_swag/" legacyBehavior>
                 <a className="text-neon-green" target="_blank" rel="noopener noreferrer">
