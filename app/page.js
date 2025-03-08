@@ -12,6 +12,7 @@ import { IoMdContact } from "react-icons/io";
 import { TbWorldWww } from "react-icons/tb";
 import { GiSkills } from "react-icons/gi";
 import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { useEffect, useRef, useState } from 'react';
@@ -111,6 +112,7 @@ export default function Home() {
         <div id="contact">
           <Contact />
         </div>
+        <Footer />
         <div className="dock-container" ref={dockRef} style={{ cursor: 'grab' }}>
           <Dock
             items={items.map(item => ({
