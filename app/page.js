@@ -93,12 +93,12 @@ export default function Home() {
         <div id="about">
           <About />
         </div>
-        <div id="skills">
+        <div id="skills" className="flex container">
           <Blackboard>
             <Skills ref={skillRefs} />
           </Blackboard>
         </div>
-        <div style={{ marginTop: `${marginTop}` }}></div>
+        {/*<div style={{ marginTop: `${marginTop}` }}></div>*/}
         <div id="portfolio">
           <Portfolio />
         </div>
