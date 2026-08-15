@@ -1,0 +1,58 @@
+@media (min-width: 768px) {
+  body {
+    padding-left: 3rem; /* 48px padding for medium devices and larger */
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    padding-left: 5rem; /* 80px padding for large devices and larger */
+    padding-right: 5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  body {
+    padding-left: 8rem; /* 128px padding for extra-large devices and larger */
+    padding-right: 8rem;
+  }
+}
+
+#tailwind css for responsive padding
+className="px-0 md:px-12 lg:px-20 xl:px-32"
+
+Blackboard code on module css
+nst Blackboard = ({ children }) => {
+    return (
+      <div className={styles['blackboard-container']}>
+        <div className={styles.nail}>
+          <i className="fas fa-cog"></i>
+        </div>
+        <div className={styles.blackboard}>
+          {children}
+        </div>
+      </div>
+    );
+  };
+
+  .blackboard::before,
+.blackboard::after {
+    content: '';
+    position: absolute;
+    top: -40vh;
+    /*Increase the length of the ropes*/
+    width: 2px;
+    margin-left: 40vw;
+    margin-right: 40vw;
+    height: 60vh;
+    z-index: -2; /* Ensure ropes are behind blackboard */
+    /* Increase the length of the ropes */
+    background-color: #0ff;
+}
+
+.neon .blackboard::before,
+.neon .blackboard::after {
+    background-color: #8a2be2;
+    box-shadow: 0 0 20px #8a2be2;
+}

@@ -1,0 +1,104 @@
+<svg width="280" height="80" viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="steliosMainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#205772"/>
+      <stop offset="100%" style="stop-color:#2B5A7A"/>
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2B3A47"/>
+      <stop offset="100%" style="stop-color:#205772"/>
+    </linearGradient>
+    <filter id="softShadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  
+  <!-- Elegant Cursive S Icon -->
+  <g transform="translate(40,40)">
+    <!-- Main S shape -->
+    <path d="M 0,-28
+             C 10,-28 19,-23 23,-15
+             C 26,-11 24,-7 21,-5
+             C 18,-3 15,-3 13,-5
+             C 11,-7 13,-9 15,-9
+             C 17,-9 19,-7 19,-5
+             C 19,0 15,5 10,7
+             C 5,9 3,12 5,14
+             C 7,16 9,16 11,14
+             C 13,12 15,14 17,16
+             C 19,18 17,20 15,20
+             C 11,20 7,18 5,14
+             C 3,10 5,6 9,4
+             C 13,2 17,-1 19,-6
+             C 21,-11 19,-16 15,-18
+             C 11,-20 5,-20 0,-18
+             C -5,-16 -5,-12 -3,-10
+             C -1,-8 1,-10 1,-12
+             C 1,-14 -1,-16 -3,-16
+             C -5,-16 -7,-14 -7,-12
+             C -7,-7 -3,-2 2,0
+             L 2,2
+             C -5,0 -12,-7 -12,-14
+             C -12,-21 -7,-26 0,-26
+             Z" 
+          fill="url(#steliosMainGradient)" 
+          filter="url(#softShadow)"/>
+    
+    <!-- Inner highlight -->
+    <path d="M 2,-22
+             C 7,-22 12,-20 14,-16
+             C 15,-14 14,-12 12,-12
+             C 10,-12 9,-14 10,-16
+             C 11,-18 8,-20 4,-20
+             C 2,-20 0,-18 0,-16
+             C 0,-14 2,-12 4,-12
+             C 8,-12 12,-10 14,-6
+             C 15,-4 14,-2 12,-2
+             C 10,-2 8,-4 8,-6
+             C 8,-8 10,-10 12,-10
+             C 14,-10 16,-8 16,-6
+             C 16,-2 12,2 8,4
+             Z" 
+          fill="rgba(255,255,255,0.3)" 
+          opacity="0.9"/>
+    
+    <!-- Decorative curves -->
+    <path d="M -8,-20 Q -12,-15 -8,-10" 
+          stroke="rgba(255,255,255,0.4)" 
+          stroke-width="1.5" 
+          fill="none" 
+          opacity="0.7"/>
+    <path d="M 18,8 Q 22,12 18,16" 
+          stroke="rgba(255,255,255,0.4)" 
+          stroke-width="1.5" 
+          fill="none" 
+          opacity="0.7"/>
+  </g>
+  
+  <!-- STELIOS main text -->
+  <text x="85" y="35" 
+        font-family="Arial, Helvetica, sans-serif" 
+        font-size="28" 
+        font-weight="700" 
+        fill="url(#textGradient)"
+        letter-spacing="2px">
+    STELIOS
+  </text>
+  
+  <!-- Subtitle/tagline -->
+  <text x="85" y="55" 
+        font-family="Arial, Helvetica, sans-serif" 
+        font-size="12" 
+        font-weight="400" 
+        fill="#6B7280"
+        letter-spacing="1.2px">
+    PROFESSIONAL SERVICES
+  </text>
+  
+  <!-- Elegant underline -->
+  <rect x="85" y="62" width="160" height="2" fill="url(#steliosMainGradient)" opacity="0.6" rx="1"/>
+  
+  <!-- Small decorative elements -->
+  <circle cx="75" cy="65" r="1.5" fill="url(#steliosMainGradient)" opacity="0.5"/>
+  <circle cx="255" cy="65" r="1.5" fill="url(#steliosMainGradient)" opacity="0.5"/>
+</svg>

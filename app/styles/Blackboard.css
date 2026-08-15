@@ -1,0 +1,120 @@
+.blackboard-container {
+    position: relative;
+    width: 95vw;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.nail {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    background-color: #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #0ff;
+    cursor: pointer;
+    font-size: 24px;
+    border: 5px solid #0ff;
+    z-index: 1;
+}
+
+.neon .nail {
+    background-color: #69a83f;
+    border-color: #8a2be2;
+    box-shadow: 0 0 10px #8a2be2;
+    /* Add glow effect */
+}
+
+.neon .blackboard {
+    background-color: #000;
+    border-color: #8a2be2;
+    box-shadow: 0 0 20px #8a2be2;
+}
+
+.blackboard {
+    min-height: 70vh;
+    height: auto;
+    width: 80vw;
+    background-color: #222;
+    border: 5px solid #0ff;
+    position: absolute;
+    top: 20vh;
+}
+
+.blackboard:active {
+    cursor: grabbing;
+}
+
+.blackboard::before {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: top left;
+}
+
+.blackboard::after {
+    right: 0;
+    transform: rotate(-45deg);
+    transform-origin: top right;
+}
+
+.blackboard-rope-before,
+.blackboard-rope-after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 50vh;
+    background-color: #0ff;
+    cursor: grab;
+    z-index: -1;
+    transform-origin: top;
+}
+
+.blackboard-rope-before {
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    transform-origin: top;
+}
+
+.blackboard-rope-after {
+    left: 50%;
+    transform: translateX(-50%) rotate(-45deg);
+    transform-origin: top;
+}
+
+.neon .blackboard-rope-before,
+.neon .blackboard-rope-after {
+    background-color: #8a2be2;
+    box-shadow: 0 0 20px #8a2be2;
+}
+
+.scroll-target {
+    scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+    .blackboard-container {
+        width: 99vw;
+    }
+
+    .blackboard {
+        width: 90vw;
+    }
+
+    .blackboard-rope-before {
+        transform: rotate(35deg);
+    }
+
+    .blackboard-rope-after {
+        transform: rotate(-35deg);
+    }
+}

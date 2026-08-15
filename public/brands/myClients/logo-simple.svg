@@ -1,0 +1,174 @@
+<svg width="280" height="70" viewBox="0 0 280 70" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Main gradient for S icon -->
+    <linearGradient id="sGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a5772">
+        <animate attributeName="stop-color" 
+                 values="#1a5772;#2563eb;#1a5772" 
+                 dur="3s" 
+                 repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" style="stop-color:#2B5A7A">
+        <animate attributeName="stop-color" 
+                 values="#2B5A7A;#3b82f6;#2B5A7A" 
+                 dur="3s" 
+                 repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+    
+    <!-- Hover gradient -->
+    <linearGradient id="sHoverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb"/>
+      <stop offset="100%" style="stop-color:#3b82f6"/>
+    </linearGradient>
+    
+    <!-- Text gradient -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1F2937"/>
+      <stop offset="100%" style="stop-color:#374151"/>
+    </linearGradient>
+    
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Shadow filter -->
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Refined Cursive S Favicon -->
+  <g id="s-icon" transform="translate(35,35)" style="cursor: pointer;">
+    <!-- Refined Cursive S - closer to original STELIOS logo -->
+    <path id="s-main" d="M 2,-22
+             C 12,-22 18,-16 19,-10
+             C 20,-7 19,-5 17,-4
+             C 15,-3 13,-3 12,-5
+             C 11,-6 12,-7 13,-7
+             C 14,-7 15,-6 15,-5
+             C 15,-1 12,2 9,4
+             C 6,6 4,8 5,10
+             C 6,12 8,12 9,11
+             C 10,10 11,11 12,12
+             C 13,13 12,14 11,14
+             C 9,14 7,13 6,11
+             C 5,9 6,7 8,5
+             C 10,3 12,1 14,-1
+             C 16,-3 15,-6 13,-7
+             C 11,-8 8,-8 5,-7
+             C 2,-6 1,-4 2,-2
+             C 3,-1 4,-2 4,-3
+             C 4,-4 3,-5 2,-5
+             C 1,-5 0,-4 0,-2
+             C 0,1 2,3 4,4
+             L 4,5
+             C 0,3 -3,0 -3,-4
+             C -3,-9 0,-13 4,-15
+             C 7,-17 10,-17 13,-16
+             Z" 
+          fill="url(#sGradient)" 
+          filter="url(#shadow)"
+          style="transition: all 0.3s ease;">
+      
+      <!-- Hover animation -->
+      <animateTransform
+        attributeName="transform"
+        type="scale"
+        values="1;1.05;1"
+        dur="2s"
+        repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Inner highlight for refined depth -->
+    <path d="M 4,-17
+             C 9,-17 12,-14 13,-11
+             C 14,-9 13,-8 12,-8
+             C 11,-8 10,-9 11,-10
+             C 12,-11 10,-12 8,-12
+             C 6,-12 5,-11 5,-9
+             C 5,-8 6,-7 7,-7
+             C 9,-7 11,-6 12,-4
+             C 13,-2 12,-1 11,-1
+             C 10,-1 9,-2 9,-3
+             C 9,-4 10,-5 11,-5
+             C 12,-5 13,-4 13,-3
+             C 13,0 11,2 9,3
+             Z" 
+          fill="rgba(255,255,255,0.5)" 
+          opacity="0.9"/>
+    
+    <!-- Decorative flourish -->
+    <path d="M -8,-18 Q -10,-15 -8,-12" 
+          stroke="rgba(255,255,255,0.6)" 
+          stroke-width="1.2" 
+          fill="none" 
+          opacity="0.7">
+      <animate attributeName="opacity" 
+               values="0.3;0.8;0.3" 
+               dur="2.5s" 
+               repeatCount="indefinite"/>
+    </path>
+    <path d="M 16,6 Q 18,8 16,10" 
+          stroke="rgba(255,255,255,0.6)" 
+          stroke-width="1.2" 
+          fill="none" 
+          opacity="0.7">
+      <animate attributeName="opacity" 
+               values="0.8;0.3;0.8" 
+               dur="2.5s" 
+               repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- STELIOS Brand Text -->
+  <text id="brand-text" x="85" y="42" 
+        font-family="Arial, Helvetica, sans-serif" 
+        font-size="26" 
+        font-weight="700" 
+        fill="url(#textGradient)"
+        letter-spacing="2.5px"
+        style="cursor: pointer; transition: all 0.3s ease;">
+    STELIOS
+    <!-- Text glow animation on hover -->
+    <animate attributeName="opacity" 
+             values="1;0.8;1" 
+             dur="4s" 
+             repeatCount="indefinite"/>
+  </text>
+  
+  <!-- Interactive hover effects -->
+  <style>
+    <![CDATA[
+      #s-icon:hover #s-main {
+        fill: url(#sHoverGradient);
+        filter: url(#glow);
+        transform: scale(1.1);
+      }
+      
+      #brand-text:hover {
+        fill: #2563eb;
+        filter: url(#glow);
+        letter-spacing: 3px;
+      }
+      
+      svg:hover #s-icon {
+        transform: translate(35px, 35px) rotate(5deg);
+      }
+      
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+      }
+      
+      #s-icon:hover {
+        animation: pulse 1s infinite;
+      }
+    ]]>
+  </style>
+</svg>

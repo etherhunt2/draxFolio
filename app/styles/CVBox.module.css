@@ -1,0 +1,26 @@
+.iconBox {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  margin-inline: 12px;
+  border-radius: 30px;
+  border: 2px solid #28c04e; /* Neon green border */
+}
+
+.iconLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.requestText {
+  margin-left: 8px; /* gap-2 equivalent */
+  font-weight: 600; /* text-semibold equivalent */
+}
+
+@media (max-width: 768px) {
+  .requestText {
+    display: none; /* Hide text on mobile devices */
+  }
+}
