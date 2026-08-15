@@ -71,12 +71,12 @@ import sams5 from '@/public/portfolio/samskara/samskara5.png'
 import sams6 from '@/public/portfolio/samskara/samskara6.png'
 
 //LilyMin
-import lily1 from '@/public/portfolio/lilyMin/lilymin1.png'
-import lily2 from '@/public/portfolio/lilyMin/lilymin2.png'
-import lily3 from '@/public/portfolio/lilyMin/lilymin3.png'
-import lily4 from '@/public/portfolio/lilyMin/lilymin4.png'
-import lily5 from '@/public/portfolio/lilyMin/lilymin5.png'
-import lily6 from '@/public/portfolio/lilyMin/lilymin6.png'
+import lily1 from '@/public/portfolio/lilymin/lilymin1.png'
+import lily2 from '@/public/portfolio/lilymin/lilymin2.png'
+import lily3 from '@/public/portfolio/lilymin/lilymin3.png'
+import lily4 from '@/public/portfolio/lilymin/lilymin4.png'
+import lily5 from '@/public/portfolio/lilymin/lilymin5.png'
+import lily6 from '@/public/portfolio/lilymin/lilymin6.png'
 
 //Astro baba
 import astro1 from '@/public/portfolio/astroBaba/astro1.png'
