@@ -19,6 +19,7 @@ const Contact = () => {
     const cursor0Ref = useRef(null);
     const cursor1Ref = useRef(null);
     const tl = useRef(null);
+    const jumpTl = useRef(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -81,9 +82,35 @@ const Contact = () => {
                         } else {
                             tl.current.play();
                         }
+
+                        if (!jumpTl.current) {
+                            jumpTl.current = gsap.timeline({ repeat: -1 });
+                            socialIconsRef.current.forEach((icon, index) => {
+                                if (icon) {
+                                    jumpTl.current.to(icon, {
+                                        y: -20,
+                                        rotation: 180,
+                                        duration: 0.3,
+                                        ease: "power2.out"
+                                    }, index * 0.6)
+                                        .to(icon, {
+                                            y: 0,
+                                            rotation: 360,
+                                            duration: 0.3,
+                                            ease: "power2.in"
+                                        }, index * 0.6 + 0.3)
+                                        .set(icon, { rotation: 0 }, index * 0.6 + 0.6);
+                                }
+                            });
+                        } else {
+                            jumpTl.current.play();
+                        }
                     } else {
                         if (tl.current) {
                             tl.current.pause();
+                        }
+                        if (jumpTl.current) {
+                            jumpTl.current.pause();
                         }
                     }
                 });
@@ -99,11 +126,25 @@ const Contact = () => {
             if (contactRef.current) {
                 observer.unobserve(contactRef.current);
             }
+            if (jumpTl.current) {
+                jumpTl.current.kill();
+            }
         };
     }, []);
 
+    const handleMouseEnter = (index) => {
+        if (jumpTl.current) jumpTl.current.pause();
+        gsap.to(socialIconsRef.current[index], { scale: 1.5, duration: 0.3 });
+    };
+
+    const handleMouseLeave = (index) => {
+        gsap.to(socialIconsRef.current[index], { scale: 1, duration: 0.3 });
+        if (jumpTl.current) jumpTl.current.play();
+    };
+
+
     const onSubmit = data => {
-        <Link to={'https://wa.me/message/7BW2TQQULFA7N1'} target='_blank' legacyBehavior />;
+        window.open('https://wa.me/message/7BW2TQQULFA7N1', '_blank');
     };
 
     return (
@@ -114,29 +155,22 @@ const Contact = () => {
                     <span ref={el => headingRef.current[1] = el}>In</span>
                     <span ref={el => headingRef.current[2] = el}>Touch</span>
                 </h2>
-                <p>Phone: +91 6287 658728</p>
+                <p>Phone: +91 91423 60746</p>
                 <p>Email: sharnagatyogesh2@gmail.com</p>
+                <p>Email 2: info@freelancedeveloper.tech</p>
                 <p>Address: Kankarbagh, Patna, Bihar, India</p>
                 <div className={`${styles.socialContainer} socialContainerr`}>
-                    <Link href="https://www.instagram.com/raising_swag/" legacyBehavior>
-                        <a className="text-neon-green" target="_blank" rel="noopener noreferrer">
-                            <FaInstagram ref={el => socialIconsRef.current[0] = el} className={styles.socialIcon} />
-                        </a>
+                    <Link href="https://www.instagram.com/raising_swag/" className="text-neon-green" target="_blank" rel="noopener noreferrer" onMouseEnter={() => handleMouseEnter(0)} onMouseLeave={() => handleMouseLeave(0)}>
+                        <FaInstagram ref={el => socialIconsRef.current[0] = el} className={styles.socialIcon} />
                     </Link>
-                    <Link href="https://www.facebook.com/sharnagat.yogesh.9/" legacyBehavior>
-                        <a className="text-neon-green" target="_blank" rel="noopener noreferrer">
-                            <FaFacebook ref={el => socialIconsRef.current[1] = el} className={styles.socialIcon} />
-                        </a>
+                    <Link href="https://www.facebook.com/sharnagat.yogesh.9/" className="text-neon-green" target="_blank" rel="noopener noreferrer" onMouseEnter={() => handleMouseEnter(1)} onMouseLeave={() => handleMouseLeave(1)}>
+                        <FaFacebook ref={el => socialIconsRef.current[1] = el} className={styles.socialIcon} />
                     </Link>
-                    <Link href="https://www.linkedin.com/in/sharnagat-yogesh/" legacyBehavior>
-                        <a className="text-neon-green" target="_blank" rel="noopener noreferrer">
-                            <FaLinkedin ref={el => socialIconsRef.current[2] = el} className={styles.socialIcon} />
-                        </a>
+                    <Link href="https://www.linkedin.com/in/sharnagat-yogesh/" className="text-neon-green" target="_blank" rel="noopener noreferrer" onMouseEnter={() => handleMouseEnter(2)} onMouseLeave={() => handleMouseLeave(2)}>
+                        <FaLinkedin ref={el => socialIconsRef.current[2] = el} className={styles.socialIcon} />
                     </Link>
-                    <Link href="https://wa.me/message/7BW2TQQULFA7N1" legacyBehavior>
-                        <a className="text-neon-green" target="_blank" rel="noopener noreferrer">
-                            <FaWhatsappSquare ref={el => socialIconsRef.current[3] = el} className={styles.socialIcon} />
-                        </a>
+                    <Link href="https://wa.me/message/7BW2TQQULFA7N1" className="text-neon-green" target="_blank" rel="noopener noreferrer" onMouseEnter={() => handleMouseEnter(3)} onMouseLeave={() => handleMouseLeave(3)}>
+                        <FaWhatsappSquare ref={el => socialIconsRef.current[3] = el} className={styles.socialIcon} />
                     </Link>
                 </div>
             </div>

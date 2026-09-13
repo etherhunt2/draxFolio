@@ -205,6 +205,24 @@ const Particles = ({
         container.removeEventListener("mousemove", handleMouseMove);
       }
       cancelAnimationFrame(animationFrameId);
+
+      // Dispose GPU resources to prevent VRAM leaks
+      if (geometry) {
+        Object.keys(geometry.attributes).forEach((key) => {
+          const attr = geometry.attributes[key];
+          if (attr && attr.buffer) {
+            gl.deleteBuffer(attr.buffer);
+          }
+        });
+      }
+      if (program && program.gl) {
+        gl.deleteProgram(program.program);
+      }
+
+      // Lose the WebGL context to free all remaining GPU memory
+      const loseCtx = gl.getExtension("WEBGL_lose_context");
+      if (loseCtx) loseCtx.loseContext();
+
       if (container.contains(gl.canvas)) {
         container.removeChild(gl.canvas);
       }

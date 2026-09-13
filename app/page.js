@@ -15,12 +15,15 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { gsap } from "gsap";
 import { Draggable } from "gsap/Draggable";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Testimony from "@/components/Testimony";
 import Clients from "@/components/Clients";
 
 // Register GSAP plugins
 gsap.registerPlugin(Draggable);
+
+// Stable reference — prevents Particles WebGL from re-initializing on every render
+const PARTICLE_COLORS = ["#ffffff", "#ffffff"];
 
 export default function Home() {
   const [marginTop, setMarginTop] = useState("100vh");
@@ -64,11 +67,6 @@ export default function Home() {
         bounds: window,
         inertia: true,
         allowEventDefault: true,
-        onClick: function (e) {
-          if (!this.isDragging) {
-            scrollToSection(item.to);
-          }
-        },
       });
     }
   }, []);
@@ -100,8 +98,8 @@ export default function Home() {
         }}
       >
         <Particles
-          particleColors={["#ffffff", "#ffffff"]}
-          particleCount={1000}
+          particleColors={PARTICLE_COLORS}
+          particleCount={500}
           particleSpread={10}
           speed={0.1}
           particleBaseSize={200}

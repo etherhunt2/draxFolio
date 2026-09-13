@@ -16,6 +16,12 @@ export default {
         alegreya: ['Alegreya', 'serif'],
         'rouge-script': ['Rouge Script', 'cursive'],
         beon: ['Beon', 'sans-serif'],
+        orbitron: ['var(--font-orbitron)', 'Orbitron', 'sans-serif'],
+        vt323: ['var(--font-vt323)', 'VT323', 'monospace'],
+        'cedarville-cursive': ['"Cedarville Cursive"', 'cursive'],
+        'edu-cursive': ['"Edu NSW ACT Cursive"', 'cursive'],
+        'playfair-display': ['"Playfair Display"', 'serif'],
+        'roboto-mono': ['"Roboto Mono"', 'monospace'],
       },
       keyframes: {
         'infinite-scroll': {

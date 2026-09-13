@@ -22,7 +22,7 @@ const Clients = () => {
     { id: 3, name: 'Funded Gen Z', logo: '/brands/fundedgenz.png' },
     { id: 4, name: 'Goblu EV', logo: '/brands/goblu-ev.png' },
     { id: 5, name: 'Prachar', logo: '/brands/prachar.png' },
-    { id: 6, name: 'Ruvazh Blue', logo: '/brands/ruvazhblue.jfif' },
+    { id: 6, name: 'Ruvazh Blue', logo: '/brands/ruvazhblue.png' },
     { id: 7, name: 'Samskara', logo: '/brands/samskara.png' },
     { id: 8, name: 'VCare', logo: '/brands/vcare.png' },
     { id: 9, name: 'Lioness', logo: '/brands/lioness.webp' },
@@ -68,6 +68,12 @@ const Clients = () => {
       repeat: -1,
       modifiers: {
         x: gsap.utils.unitize(x => parseFloat(x) % totalWidth)
+      },
+      onUpdate: () => {
+        // Update current index based on position (replaces polling setInterval)
+        const currentX = gsap.getProperty(carousel, 'x');
+        const newIndex = Math.round(Math.abs(currentX) / brandWidth) % originalBrandsLength;
+        setCurrentIndex(prev => prev !== newIndex ? newIndex : prev);
       }
     });
 
@@ -112,13 +118,7 @@ const Clients = () => {
     setCurrentIndex(newIndex);
   }, [isClient, isMobile, originalBrandsLength]);
 
-  // Track animation progress
-  useEffect(() => {
-    if (!isClient) return;
-
-    const interval = setInterval(updateCurrentIndex, 100);
-    return () => clearInterval(interval);
-  }, [isClient, updateCurrentIndex]);
+  // Track animation progress — handled by GSAP onUpdate above, no polling needed
 
   // Desktop control functions
   const handlePlayPause = useCallback(() => {
@@ -243,8 +243,10 @@ const Clients = () => {
                       alt={`${brand.name} company logo`}
                       width={120}
                       height={60}
+                      style={{ width: 'auto', height: 'auto' }}
                       className={styles.logoImage}
                       loading="lazy"
+                      quality={90}
                     />
                   </div>
                 </div>
@@ -317,6 +319,7 @@ const Clients = () => {
                     alt={`${brand.name} company logo`}
                     width={isMobile ? 80 : 120}
                     height={isMobile ? 40 : 60}
+                    style={{ width: 'auto', height: 'auto' }}
                     className={styles.logoImage}
                     loading="lazy"
                     quality={90}

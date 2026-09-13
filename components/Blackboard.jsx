@@ -9,7 +9,10 @@ import { Draggable } from 'gsap/Draggable';
 gsap.registerPlugin(Draggable);
 
 const handleNailClick = () => {
-    document.querySelector('.blackboard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const el = document.querySelector('.blackboard');
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 };
 
 const Blackboard = ({ children }) => {
@@ -19,6 +22,8 @@ const Blackboard = ({ children }) => {
     const blackboardRef = useRef(null);
 
     useEffect(() => {
+        if (!blackboardRef.current || !ropeBeforeRef.current || !ropeAfterRef.current) return;
+
         const ropes = [ropeBeforeRef.current, ropeAfterRef.current];
         const blackboard = blackboardRef.current;
 
@@ -27,8 +32,9 @@ const Blackboard = ({ children }) => {
 
         // Enforce 90-degree angle between ropes
         const enforceRopeAngle = () => {
-            const ropeBeforeRotation = gsap.getProperty(ropeBeforeRef.current, 'rotation');
-            const ropeAfterRotation = gsap.getProperty(ropeAfterRef.current, 'rotation');
+            if (!ropeBeforeRef.current || !ropeAfterRef.current) return;
+            const ropeBeforeRotation = gsap.getProperty(ropeBeforeRef.current, 'rotation') || 0;
+            const ropeAfterRotation = gsap.getProperty(ropeAfterRef.current, 'rotation') || 0;
 
             const isMobile = window.innerWidth <= 768;
             const angleDifference = isMobile ? 35 : 45;
@@ -49,51 +55,53 @@ const Blackboard = ({ children }) => {
         };
 
         // Blackboard drag animation
-        const draggableInstance = Draggable.create(blackboard, {
+        const draggableInstances = Draggable.create(blackboard, {
             type: 'rotation',
-            bounds: { minRotation: -45, maxRotation: 45 }, // Adjust rotation bounds
+            bounds: { minRotation: -45, maxRotation: 45 },
             onDrag: function () {
-                // Rotate the blackboard and ropes together
+                if (!blackboardRef.current || !ropeBeforeRef.current || !ropeAfterRef.current) return;
                 gsap.set(blackboard, { rotation: this.rotation });
-                gsap.set(ropeBeforeRef.current, { rotation: this.rotation + 45 }); // Maintain 45-degree angle
-                gsap.set(ropeAfterRef.current, { rotation: this.rotation - 45 }); // Maintain 45-degree angle
+                gsap.set(ropeBeforeRef.current, { rotation: this.rotation + 45 });
+                gsap.set(ropeAfterRef.current, { rotation: this.rotation - 45 });
 
-                //enforceRopeAngle(); // Enforce the 45-degree rule during drag
-                // Rotate the wheel icon based on drag direction
-                if (this.rotation < 0) {
-                    // Drag to the left (clockwise rotation)
-                    gsap.to(wheelRef.current, {
-                        rotation: `+=${-this.rotation}`,
-                        ease: "power1.inOut",
-                        duration: 0.1,
-                    });
-                } else if (this.rotation > 0) {
-                    // Drag to the right (anti-clockwise rotation)
-                    gsap.to(wheelRef.current, {
-                        rotation: `-=${this.rotation}`,
-                        ease: "power1.inOut",
-                        duration: 0.1,
-                    });
+                if (wheelRef.current) {
+                    if (this.rotation < 0) {
+                        gsap.to(wheelRef.current, {
+                            rotation: `+=${-this.rotation}`,
+                            ease: "power1.inOut",
+                            duration: 0.1,
+                        });
+                    } else if (this.rotation > 0) {
+                        gsap.to(wheelRef.current, {
+                            rotation: `-=${this.rotation}`,
+                            ease: "power1.inOut",
+                            duration: 0.1,
+                        });
+                    }
                 }
             },
             onDragEnd: function () {
-                // Return the blackboard and ropes to their original positions
+                if (!blackboardRef.current || !ropeBeforeRef.current || !ropeAfterRef.current) return;
                 gsap.to([blackboard, ropeBeforeRef.current, ropeAfterRef.current], {
                     rotation: 0,
                     duration: 5,
                     ease: 'elastic.out(2, 0.3)',
-                    onComplete: enforceRopeAngle, // Enforce the 45-degree rule after animation
+                    onComplete: enforceRopeAngle,
                 });
-                // Return the wheel icon to its original position
-                gsap.to(wheelRef.current, {
-                    rotation: 0,
-                    duration: 5,
-                    ease: 'elastic.out(5, 0.3)',
-                });
+                if (wheelRef.current) {
+                    gsap.to(wheelRef.current, {
+                        rotation: 0,
+                        duration: 5,
+                        ease: 'elastic.out(5, 0.3)',
+                    });
+                }
             },
-        })[0];
+        });
+
+        const draggableInstance = draggableInstances && draggableInstances[0];
 
         const handleResize = () => {
+            if (!draggableInstance) return;
             if (window.innerWidth <= 768) {
                 draggableInstance.disable();
             } else {
@@ -101,16 +109,14 @@ const Blackboard = ({ children }) => {
             }
         };
 
-        // Initial check
         handleResize();
-
-        // Add event listener for dynamic resize
         window.addEventListener('resize', handleResize);
 
-        // Cleanup on unmount
         return () => {
             window.removeEventListener('resize', handleResize);
-            draggableInstance.kill();
+            if (draggableInstance && typeof draggableInstance.kill === 'function') {
+                draggableInstance.kill();
+            }
         };
     }, []);
 

@@ -9,54 +9,59 @@ const SkillBar = forwardRef(({ title, percentage, label }, ref) => {
   const yearRef = useRef(null);
 
   const animateProgress = () => {
+    if (!progressRef.current || !numberRef.current) return;
     gsap.to(progressRef.current, {
       width: `${percentage}%`,
       left: `${percentage}%`,
-      duration: 2, // 2 seconds
+      duration: 2,
       ease: 'power1.out',
       onUpdate: () => {
-        const currentWidth = parseFloat(progressRef.current.style.width);
+        if (!progressRef.current || !numberRef.current) return;
+        const currentWidth = parseFloat(progressRef.current.style.width) || 0;
         numberRef.current.style.left = `calc(${currentWidth}% - 1.25rem)`;
         numberRef.current.textContent = `${Math.round(currentWidth)}%`;
       },
       onComplete: () => {
-        progressRef.current.classList.add(`${styles.glow}`);
+        if (progressRef.current) {
+          progressRef.current.classList.add(`${styles.glow}`);
+        }
       },
     });
   };
 
   const resetProgress = () => {
+    if (!progressRef.current || !numberRef.current) return;
     gsap.to(progressRef.current, {
       width: '0%',
-      duration: 0.5, // 0.5 seconds
+      duration: 0.5,
       ease: 'power1.out',
       onUpdate: () => {
+        if (!numberRef.current) return;
         numberRef.current.style.left = '0%';
         numberRef.current.textContent = '0%';
       },
       onComplete: () => {
-        progressRef.current.classList.remove(`${styles.glow}`);
+        if (progressRef.current) {
+          progressRef.current.classList.remove(`${styles.glow}`);
+        }
       },
     });
   };
 
   useEffect(() => {
-    // Use IntersectionObserver to detect when the skill bar enters/exits the viewport
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Trigger animation when the skill bar is in view
             animateProgress();
           } else {
-            if (progressRef.current.style.width !== '0%') {
-              // Reset animation when the skill bar exits the viewport
+            if (progressRef.current && progressRef.current.style && progressRef.current.style.width !== '0%') {
               resetProgress();
             }
           }
         });
       },
-      { threshold: 0.5 } // Adjust the threshold as needed
+      { threshold: 0.5 }
     );
 
     if (skillBarRef.current) {
@@ -66,6 +71,9 @@ const SkillBar = forwardRef(({ title, percentage, label }, ref) => {
     return () => {
       if (skillBarRef.current) {
         observer.unobserve(skillBarRef.current);
+      }
+      if (progressRef.current) {
+        gsap.killTweensOf(progressRef.current);
       }
     };
   }, [percentage]);

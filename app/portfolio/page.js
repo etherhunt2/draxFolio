@@ -1,79 +1,44 @@
 "use client";
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaHardHat, FaTools } from 'react-icons/fa';
-import Link from 'next/link';
 
-export default function PortfolioConstruction() {
+import React from "react";
+import Link from "next/link";
+import FeaturedProject from "@/components/FeaturedProject";
+import OtherProjects from "@/components/OtherProjects";
+import Stars from "@/utils/Stars";
+import { FaArrowLeft } from "react-icons/fa";
+
+export default function PortfolioPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-zinc-950 text-white p-4">
-      <div className="max-w-2xl w-full text-center space-y-8 relative">
-        {/* Decorative elements */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-orange-500/20 blur-[100px] rounded-full pointer-events-none" />
-        
-        <motion.div 
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: "spring", duration: 1 }}
-          className="flex justify-center items-center gap-6 text-orange-500 text-6xl md:text-8xl mb-8"
-        >
-          <FaHardHat className="drop-shadow-[0_0_15px_rgba(249,115,22,0.5)]" />
-          <motion.div
-            animate={{ rotate: [0, 15, -15, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          >
-            <FaTools className="drop-shadow-[0_0_15px_rgba(249,115,22,0.5)] text-5xl md:text-7xl" />
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="space-y-4"
-        >
-          <h1 className="text-4xl md:text-6xl font-black tracking-tighter bg-gradient-to-r from-orange-400 to-yellow-500 bg-clip-text text-transparent">
-            Under Construction
-          </h1>
-          <p className="text-zinc-400 text-lg md:text-xl max-w-lg mx-auto leading-relaxed">
-            I'm currently building something awesome for this portfolio section. 
-            Check back soon to see my latest work!
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="pt-8"
-        >
-          <div className="w-full max-w-md mx-auto h-2 bg-zinc-800 rounded-full overflow-hidden">
-            <motion.div 
-              className="h-full bg-gradient-to-r from-orange-500 to-yellow-500"
-              initial={{ width: "0%" }}
-              animate={{ width: "65%" }}
-              transition={{ delay: 1, duration: 2, ease: "easeOut" }}
-            />
-          </div>
-          <p className="text-zinc-500 text-sm mt-4 font-mono tracking-widest uppercase">
-            Progress: 65%
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="pt-8"
-        >
-          <Link 
-            href="/"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-800 hover:border-zinc-700 transition-all duration-300"
-          >
-            ← Back to Home
-          </Link>
-        </motion.div>
+    <div className="relative w-full min-h-screen">
+      {/* Fixed 3D Space Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <Stars
+          starCount={1500}
+          brightStarCount={80}
+          galaxyParticleCount={600}
+          nebulaCount={250}
+          speed={0.08}
+          moveOnHover={true}
+        />
       </div>
+
+      {/* Content */}
+      <main className="relative z-10 min-h-screen text-white selection:bg-blue-500 selection:text-white bg-transparent">
+        {/* Top Bar Navigation */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex items-center justify-between">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-800 hover:border-zinc-700 transition-all duration-200 text-sm font-medium shadow-sm backdrop-blur-sm"
+          >
+            <FaArrowLeft className="text-xs" />
+            <span>Back to Home</span>
+          </Link>
+        </div>
+
+        {/* Main Projects Showcase */}
+        <FeaturedProject />
+        <OtherProjects />
+      </main>
     </div>
   );
 }

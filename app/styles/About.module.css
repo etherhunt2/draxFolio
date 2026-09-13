@@ -2,20 +2,29 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem;
+  width: 100%;
+  min-height: 85vh;
+  padding: 2rem 1rem;
   position: relative;
 }
 
 .textContent {
-  flex: 1;
+  flex: 1 1 50%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
 }
 
 .profilePic {
-  flex: 0 0 auto;
-  margin-left: 2rem;
+  flex: 1 1 50%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
 }
 
+.bubbleContainer,
 .bubble-container {
   position: absolute;
   top: 0;
@@ -44,9 +53,22 @@
 }
 
 @media (max-width: 768px) {
-
   .aboutSection {
     flex-direction: column;
+    padding: 1.5rem 1rem;
+    min-height: auto;
+  }
+
+  .textContent {
+    flex: 1 1 100%;
+    width: 100%;
+    text-align: center;
+  }
+
+  .profilePic {
+    flex: 1 1 100%;
+    width: 100%;
+    margin-top: 2.5rem;
   }
 
   .subHeading {
@@ -72,4 +94,4 @@
   color: #8a2be2;
   /* Violet neon color */
   text-shadow: 0 0 5px #8a2be2, 0 0 10px #8a2be2, 0 0 20px #8a2be2, 0 0 40px #8a2be2;
-}
+}
