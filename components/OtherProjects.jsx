@@ -10,98 +10,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // Register GSAP ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-// Goblu EV
-import goblu1 from '@/public/portfolio/gobluEV/goblu1.png';
-import goblu2 from '@/public/portfolio/gobluEV/goblu2.png';
-import goblu3 from '@/public/portfolio/gobluEV/goblu3.png';
-import goblu4 from '@/public/portfolio/gobluEV/goblu4.png';
-import goblu5 from '@/public/portfolio/gobluEV/goblu5.png';
-import goblu6 from '@/public/portfolio/gobluEV/goblu6.png';
-
-// Salaada
-import salad1 from '@/public/portfolio/Saladaa/salad1.png';
-import salad2 from '@/public/portfolio/Saladaa/salad2.png';
-import salad3 from '@/public/portfolio/Saladaa/salad3.png';
-import salad4 from '@/public/portfolio/Saladaa/salad4.png';
-import salad5 from '@/public/portfolio/Saladaa/salad5.png';
-
-// Women Up Fitness
-import fitness1 from '@/public/portfolio/womenUP/fitness1.png';
-import fitness2 from '@/public/portfolio/womenUP/fitness2.png';
-import fitness3 from '@/public/portfolio/womenUP/fitness3.png';
-import fitness4 from '@/public/portfolio/womenUP/fitness4.png';
-import fitness5 from '@/public/portfolio/womenUP/fitness5.png';
-import fitness6 from '@/public/portfolio/womenUP/fitness6.png';
-import fitness7 from '@/public/portfolio/womenUP/fitness7.png';
-
-// MR Lioness
-import lion1 from '@/public/portfolio/mrLioness/lion1.png';
-import lion2 from '@/public/portfolio/mrLioness/lion2.png';
-import lion3 from '@/public/portfolio/mrLioness/lion3.png';
-import lion4 from '@/public/portfolio/mrLioness/lion4.png';
-import lion5 from '@/public/portfolio/mrLioness/lion5.png';
-import lion6 from '@/public/portfolio/mrLioness/lion6.png';
-import lion7 from '@/public/portfolio/mrLioness/lion7.png';
-
-// Astro baba
-import astro1 from '@/public/portfolio/astroBaba/astro1.png';
-import astro2 from '@/public/portfolio/astroBaba/astro2.png';
-import astro3 from '@/public/portfolio/astroBaba/astro3.png';
-import astro4 from '@/public/portfolio/astroBaba/astro4.png';
-import astro5 from '@/public/portfolio/astroBaba/astro5.png';
-
-// Ruvazh blue
-import ruv1 from '@/public/portfolio/ruvazh/ruv1.png';
-import ruv2 from '@/public/portfolio/ruvazh/ruv2.png';
-import ruv3 from '@/public/portfolio/ruvazh/ruv3.png';
-import ruv4 from '@/public/portfolio/ruvazh/ruv4.png';
-import ruv5 from '@/public/portfolio/ruvazh/ruv5.png';
-
-//Funded GenZ
-import gen1 from '@/public/portfolio/fundedgenz/fundedgenz1.png';
-import gen3 from '@/public/portfolio/fundedgenz/fundedgenz3.png';
-import gen2 from '@/public/portfolio/fundedgenz/fundedgenz2.png';
-
-//Real Estate
-import re1 from '@/public/portfolio/realEstate/realestate1.png';
-import re2 from '@/public/portfolio/realEstate/realestate2.png';
-import re3 from '@/public/portfolio/realEstate/realestate3.png';
-import re4 from '@/public/portfolio/realEstate/realestate4.png';
-import re5 from '@/public/portfolio/realEstate/realestate5.png';
-
-//Zee Care Hospital
-import zee1 from '@/public/portfolio/zeeCareHospital/zee1.png';
-import zee2 from '@/public/portfolio/zeeCareHospital/zee2.png';
-import zee3 from '@/public/portfolio/zeeCareHospital/zee3.png';
-import zee4 from '@/public/portfolio/zeeCareHospital/zee4.png';
-import zee5 from '@/public/portfolio/zeeCareHospital/zee5.png';
-
-// Build Pro
-import build1 from '@/public/portfolio/buildPro/build1.png';
-import build2 from '@/public/portfolio/buildPro/build2.png';
-import build3 from '@/public/portfolio/buildPro/build3.png';
-import build4 from '@/public/portfolio/buildPro/build4.png';
-import build5 from '@/public/portfolio/buildPro/build5.png';
-import build6 from '@/public/portfolio/buildPro/build6.png';
-
-//PyramidCI
-import py1 from '@/public/portfolio/pyramidci/pyramid1.png';
-import py2 from '@/public/portfolio/pyramidci/pyramid2.png';
-import py3 from '@/public/portfolio/pyramidci/pyramid3.png';
-import py4 from '@/public/portfolio/pyramidci/pyramid4.png';
-
-//KukuFM Demo
-import kuku1 from '@/public/portfolio/kukuFMdemo/kuku1.png';
-import kuku2 from '@/public/portfolio/kukuFMdemo/kuku2.png';
-import kuku3 from '@/public/portfolio/kukuFMdemo/kuku3.png';
-import kuku4 from '@/public/portfolio/kukuFMdemo/kuku4.png';
-import kuku5 from '@/public/portfolio/kukuFMdemo/kuku5.png';
-
 const projects = [
     {
         title: 'Ruvazh',
         description: 'Jewelry Manufacturing platform built for high-throughput retail & wholesale business operations.',
-        images: [ruv1, ruv2, ruv3, ruv4, ruv5],
+        images: ['/portfolio/ruvazh/ruv1.png', '/portfolio/ruvazh/ruv2.png', '/portfolio/ruvazh/ruv3.png', '/portfolio/ruvazh/ruv4.png', '/portfolio/ruvazh/ruv5.png'],
         link: 'https://ruvazh.com/',
         github: '',
         tags: ['PHP', 'Bootstrap', 'jQuery', 'MySQL'],
@@ -109,7 +22,7 @@ const projects = [
     {
         title: 'Build Pro',
         description: 'A construction company website built with Next.js and Tailwind CSS',
-        images: [build1, build2, build3, build4, build5, build6],
+        images: ['/portfolio/buildPro/build1.png', '/portfolio/buildPro/build2.png', '/portfolio/buildPro/build3.png', '/portfolio/buildPro/build4.png', '/portfolio/buildPro/build5.png', '/portfolio/buildPro/build6.png'],
         link: 'https://buildprodemo.vercel.app/',
         github: 'https://github.com/etherhunt2/buildpro',
         tags: ['Next.js', 'Tailwind CSS', 'GSAP', 'Framer-Motion'],
@@ -117,7 +30,7 @@ const projects = [
     {
         title: 'Astro Baba',
         description: 'Dynamic astrology consultation and automated horoscope booking service platform.',
-        images: [astro1, astro2, astro3, astro4, astro5],
+        images: ['/portfolio/astroBaba/astro1.png', '/portfolio/astroBaba/astro2.png', '/portfolio/astroBaba/astro3.png', '/portfolio/astroBaba/astro4.png', '/portfolio/astroBaba/astro5.png'],
         link: 'https://astrobabademo.vercel.app/',
         github: 'https://github.com/etherhunt2/astrobaba',
         tags: ['React.js', 'Node.js', 'Tailwind CSS'],
@@ -125,7 +38,7 @@ const projects = [
     {
         title: 'Funded GenZ',
         description: 'Funded GenZ is a platform that helps students get funding for trading education.',
-        images: [gen1, gen3, gen2],
+        images: ['/portfolio/fundedgenz/fundedgenz1.png', '/portfolio/fundedgenz/fundedgenz3.png', '/portfolio/fundedgenz/fundedgenz2.png'],
         link: 'https://fundedgenz.vercel.app/',
         github: 'https://github.com/etherhunt2/fundedgenz',
         tags: ['React.js', 'Vite.js', 'Tailwind CSS'],
@@ -133,7 +46,7 @@ const projects = [
     {
         title: 'Real Estate',
         description: 'A Cyber Punk Themed, Real Estate platform built for high-throughput real estate business operations.',
-        images: [re1, re2, re3, re4, re5],
+        images: ['/portfolio/realEstate/realestate1.png', '/portfolio/realEstate/realestate2.png', '/portfolio/realEstate/realestate3.png', '/portfolio/realEstate/realestate4.png', '/portfolio/realEstate/realestate5.png'],
         link: 'https://realestatevue.vercel.app/',
         github: 'https://github.com/etherhunt2/estate-vue/',
         tags: ['React.js', 'Node.js', 'Tailwind CSS', 'Framer Motion'],
@@ -141,7 +54,7 @@ const projects = [
     {
         title: 'Zee Care Hospital',
         description: 'A platform for healthcare management and patient care coordination.',
-        images: [zee1, zee2, zee3, zee4, zee5],
+        images: ['/portfolio/zeeCareHospital/zee1.png', '/portfolio/zeeCareHospital/zee2.png', '/portfolio/zeeCareHospital/zee3.png', '/portfolio/zeeCareHospital/zee4.png', '/portfolio/zeeCareHospital/zee5.png'],
         link: 'https://zeecarehospital.vercel.app/',
         github: 'https://github.com/etherhunt2/hospital',
         tags: ['React.js', 'Vite.js', 'Tailwind CSS', 'Python-Flask'],
@@ -149,7 +62,7 @@ const projects = [
     {
         title: 'PyramidCI',
         description: 'A platform for Man Power Hiring and Staff Provider Company.',
-        images: [py1, py2, py3, py4],
+        images: ['/portfolio/pyramidci/pyramid1.png', '/portfolio/pyramidci/pyramid2.png', '/portfolio/pyramidci/pyramid3.png', '/portfolio/pyramidci/pyramid4.png'],
         link: 'https://pyramidci.com/',
         github: '',
         tags: ['HTML', 'CSS', 'JavaScript', 'PHP'],
@@ -157,7 +70,7 @@ const projects = [
     {
         title: 'KukuFM Demo',
         description: 'An OTT platform with Audio Stories and Audiobooks.',
-        images: [kuku1, kuku2, kuku3, kuku4, kuku5],
+        images: ['/portfolio/kukuFMdemo/kuku1.png', '/portfolio/kukuFMdemo/kuku2.png', '/portfolio/kukuFMdemo/kuku3.png', '/portfolio/kukuFMdemo/kuku4.png', '/portfolio/kukuFMdemo/kuku5.png'],
         link: 'https://kukufmdemo.vercel.app/',
         github: 'https://github.com/etherhunt2/kukufm',
         tags: ['React.js', 'Vite.js', 'Tailwind CSS'],
@@ -165,7 +78,7 @@ const projects = [
     {
         title: 'Goblu EV',
         description: 'Electric mobility management portal with live charging station telemetry and fleet scheduling.',
-        images: [goblu1, goblu2, goblu3, goblu4, goblu5, goblu6],
+        images: ['/portfolio/gobluEV/goblu1.png', '/portfolio/gobluEV/goblu2.png', '/portfolio/gobluEV/goblu3.png', '/portfolio/gobluEV/goblu4.png', '/portfolio/gobluEV/goblu5.png', '/portfolio/gobluEV/goblu6.png'],
         link: 'https://goblu.in/',
         github: '',
         tags: ['React.js', 'Node.js', 'Tailwind CSS'],
@@ -173,7 +86,7 @@ const projects = [
     {
         title: 'Salaada',
         description: 'Fresh organic culinary delivery and subscription marketplace with custom order configurator.',
-        images: [salad1, salad2, salad3, salad4, salad5],
+        images: ['/portfolio/Saladaa/salad1.png', '/portfolio/Saladaa/salad2.png', '/portfolio/Saladaa/salad3.png', '/portfolio/Saladaa/salad4.png', '/portfolio/Saladaa/salad5.png'],
         link: 'https://saladaa.com/',
         github: '',
         tags: ['Next.js', 'TypeScript', 'Stripe'],
@@ -181,7 +94,7 @@ const projects = [
     {
         title: 'Women Up Fitness',
         description: 'Comprehensive fitness studio community app with on-demand class streaming and habit tracking.',
-        images: [fitness1, fitness2, fitness3, fitness4, fitness5, fitness6, fitness7],
+        images: ['/portfolio/womenUP/fitness1.png', '/portfolio/womenUP/fitness2.png', '/portfolio/womenUP/fitness3.png', '/portfolio/womenUP/fitness4.png', '/portfolio/womenUP/fitness5.png', '/portfolio/womenUP/fitness6.png', '/portfolio/womenUP/fitness7.png'],
         link: 'https://womenup.in/',
         github: '',
         tags: ['React.js', 'Firebase', 'Tailwind'],
@@ -189,7 +102,7 @@ const projects = [
     {
         title: 'MR Lioness',
         description: 'Luxury lifestyle portfolio and editorial showcase with responsive lookbook galleries.',
-        images: [lion1, lion2, lion3, lion4, lion5, lion6, lion7],
+        images: ['/portfolio/mrLioness/lion1.png', '/portfolio/mrLioness/lion2.png', '/portfolio/mrLioness/lion3.png', '/portfolio/mrLioness/lion4.png', '/portfolio/mrLioness/lion5.png', '/portfolio/mrLioness/lion6.png', '/portfolio/mrLioness/lion7.png'],
         link: 'https://mrlioness.com/',
         github: '',
         tags: ['Next.js', 'GSAP', 'CSS Modules'],
@@ -226,6 +139,26 @@ export default function OlderProjects() {
                 );
             }
 
+            // Batch Stagger Entrance
+            const validCards = cardsRef.current.filter(Boolean);
+            if (validCards.length > 0) {
+                gsap.set(validCards, { opacity: 0, y: 60, scale: 0.92 });
+                ScrollTrigger.batch(validCards, {
+                    scroller: scrollerElement || undefined,
+                    start: 'top 90%',
+                    onEnter: (batch) => {
+                        gsap.to(batch, {
+                            opacity: 1,
+                            y: 0,
+                            scale: 1,
+                            duration: 0.9,
+                            stagger: 0.1,
+                            ease: 'power3.out',
+                        });
+                    },
+                });
+            }
+
             // Parallax Scrub for each column/card
             cardsRef.current.forEach((cardEl, i) => {
                 if (!cardEl) return;
@@ -233,30 +166,6 @@ export default function OlderProjects() {
                 // Alternate parallax speed based on 3-column layout
                 const col = i % 3;
                 const parallaxDistance = col === 0 ? 35 : col === 1 ? -30 : 20;
-
-                // Initial Stagger Entrance
-                gsap.fromTo(
-                    cardEl,
-                    {
-                        opacity: 0,
-                        y: 60,
-                        scale: 0.92,
-                    },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        duration: 0.9,
-                        delay: (i % 3) * 0.1,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: cardEl,
-                            scroller: scrollerElement || undefined,
-                            start: 'top 90%',
-                            toggleActions: 'play none none reverse',
-                        },
-                    }
-                );
 
                 // Continuous Scroll-Driven Scrub Parallax
                 gsap.to(cardEl, {

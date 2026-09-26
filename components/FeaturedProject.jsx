@@ -5,63 +5,11 @@ import gsap from 'gsap';
 import ProjectCard from './LaptopImage/ProjectCard';
 import Link from 'next/link';
 
-//Eva The Label
-import eva1 from '@/public/portfolio/evaTheLabel/eva1.png';
-import eva2 from '@/public/portfolio/evaTheLabel/eva2.png';
-import eva3 from '@/public/portfolio/evaTheLabel/eva3.png';
-import eva4 from '@/public/portfolio/evaTheLabel/eva4.png';
-import eva5 from '@/public/portfolio/evaTheLabel/eva5.png';
-import eva6 from '@/public/portfolio/evaTheLabel/eva6.png';
-
-//ASGEICS INDIA
-import a1 from '@/public/portfolio/asgeicsIndia/asgeics1.png'
-import a2 from '@/public/portfolio/asgeicsIndia/asgeics2.png'
-import a3 from '@/public/portfolio/asgeicsIndia/asgeics3.png'
-import a4 from '@/public/portfolio/asgeicsIndia/asgeics4.png'
-import a5 from '@/public/portfolio/asgeicsIndia/asgeics5.png'
-
-//Prachar
-import p1 from '@/public/portfolio/prachar/prachar1.png'
-import p2 from '@/public/portfolio/prachar/prachar2.png'
-import p3 from '@/public/portfolio/prachar/prachar3.png'
-import p4 from '@/public/portfolio/prachar/prachar4.png'
-import p5 from '@/public/portfolio/prachar/prachar5.png'
-
-//Samskara
-import sams1 from '@/public/portfolio/samskara/samskara1.png'
-import sams2 from '@/public/portfolio/samskara/samskara2.png'
-import sams3 from '@/public/portfolio/samskara/samskara3.png'
-import sams4 from '@/public/portfolio/samskara/samskara4.png'
-import sams5 from '@/public/portfolio/samskara/samskara5.png'
-import sams6 from '@/public/portfolio/samskara/samskara6.png'
-
-//LilyMin
-import lily1 from '@/public/portfolio/lilymin/lilymin1.png'
-import lily2 from '@/public/portfolio/lilymin/lilymin2.png'
-import lily3 from '@/public/portfolio/lilymin/lilymin3.png'
-import lily4 from '@/public/portfolio/lilymin/lilymin4.png'
-import lily5 from '@/public/portfolio/lilymin/lilymin5.png'
-import lily6 from '@/public/portfolio/lilymin/lilymin6.png'
-
-//Ruvazh blue
-import ruv1 from '@/public/portfolio/ruvazh/ruv1.png'
-import ruv2 from '@/public/portfolio/ruvazh/ruv2.png'
-import ruv3 from '@/public/portfolio/ruvazh/ruv3.png'
-import ruv4 from '@/public/portfolio/ruvazh/ruv4.png'
-import ruv5 from '@/public/portfolio/ruvazh/ruv5.png'
-
-//CIGS
-import cigs1 from "@/public/portfolio/cigs/cigs1.png"
-import cigs2 from "@/public/portfolio/cigs/cigs2.png"
-import cigs3 from "@/public/portfolio/cigs/cigs3.png"
-import cigs4 from "@/public/portfolio/cigs/cigs4.png"
-import cigs5 from "@/public/portfolio/cigs/cigs5.png"
-
 const projects = [
     {
         title: 'Eva The Label',
         description: 'High-end e-commerce brand platform featuring interactive lookbooks and seamless checkout flow.',
-        images: [eva1, eva2, eva3, eva4, eva5, eva6],
+        images: ['/portfolio/evaTheLabel/eva1.png', '/portfolio/evaTheLabel/eva2.png', '/portfolio/evaTheLabel/eva3.png', '/portfolio/evaTheLabel/eva4.png', '/portfolio/evaTheLabel/eva5.png', '/portfolio/evaTheLabel/eva6.png'],
         link: 'https://www.evathelabel.es/',
         github: 'https://github.com/your-username/eva-the-label', // Replace with your repository URL
         tags: ['React', 'Next.js', 'Tailwind CSS'],
@@ -69,7 +17,7 @@ const projects = [
     {
         title: 'Samskara',
         description: 'Interactive wellness booking platform built for community engagement and appointment scheduling.',
-        images: [sams1, sams2, sams3, sams4, sams5, sams6],
+        images: ['/portfolio/samskara/samskara1.png', '/portfolio/samskara/samskara2.png', '/portfolio/samskara/samskara3.png', '/portfolio/samskara/samskara4.png', '/portfolio/samskara/samskara5.png', '/portfolio/samskara/samskara6.png'],
         link: 'https://samskara.app/',
         github: '', // Leave blank or provide repository URL
         tags: ['Next.js', 'TypeScript', 'Node.js'],
@@ -77,7 +25,7 @@ const projects = [
     {
         title: 'Prachar',
         description: 'Marketing campaign and advertising platform designed for rapid customer outreach.',
-        images: [p1, p2, p3, p4, p5],
+        images: ['/portfolio/prachar/prachar1.png', '/portfolio/prachar/prachar2.png', '/portfolio/prachar/prachar3.png', '/portfolio/prachar/prachar4.png', '/portfolio/prachar/prachar5.png'],
         link: 'https://pracharr.vercel.app/',
         github: '',
         tags: ['React.js', 'Next.JS', 'Node.js', 'Vercel'],
@@ -85,7 +33,7 @@ const projects = [
     {
         title: 'Asgeics India',
         description: 'Enterprise operations and field service network management system.',
-        images: [a1, a2, a3, a4, a5],
+        images: ['/portfolio/asgeicsIndia/asgeics1.png', '/portfolio/asgeicsIndia/asgeics2.png', '/portfolio/asgeicsIndia/asgeics3.png', '/portfolio/asgeicsIndia/asgeics4.png', '/portfolio/asgeicsIndia/asgeics5.png'],
         link: 'https://asgeicsindia.vercel.app/',
         github: '',
         tags: ['MERN Stack', 'Vite.JS'],
@@ -93,7 +41,7 @@ const projects = [
     {
         title: 'LilyMin',
         description: 'Minimalist product catalog and custom shopping portal.',
-        images: [lily1, lily2, lily3, lily4, lily5, lily6],
+        images: ['/portfolio/lilymin/lilymin1.png', '/portfolio/lilymin/lilymin2.png', '/portfolio/lilymin/lilymin3.png', '/portfolio/lilymin/lilymin4.png', '/portfolio/lilymin/lilymin5.png', '/portfolio/lilymin/lilymin6.png'],
         link: 'https://www.lilymin.in/',
         github: '',
         tags: ['PHP', 'MySQL', 'E-Commerce', 'WordPress'],
@@ -101,7 +49,7 @@ const projects = [
     {
         title: 'CIGS',
         description: "CIGS Tech Innovations is an Indian FinTech driving rural financial inclusion via a Phygital model, offering assisted banking, bill payments, insurance, and G2C services through local agents.",
-        images: [cigs1, cigs2, cigs3, cigs4, cigs5],
+        images: ['/portfolio/cigs/cigs1.png', '/portfolio/cigs/cigs2.png', '/portfolio/cigs/cigs3.png', '/portfolio/cigs/cigs4.png', '/portfolio/cigs/cigs5.png'],
         link: 'https://cigs.in/',
         github: '',
         tags: ['React.js', 'Wix', 'GSAP'],
@@ -520,7 +468,7 @@ export default function ProjectsShowcase() {
             {/* Grid Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {projects.map((project, idx) => (
-                    <ProjectCard key={idx} project={project} index={idx} variant="cyberpunk" />
+                    <ProjectCard key={idx} project={project} index={idx} variant="cyberpunk" priority={idx < 5} />
                 ))}
             </div>
         </section>

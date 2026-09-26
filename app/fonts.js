@@ -3,7 +3,10 @@ import {
   Orbitron,
   Cedarville_Cursive,
   Playfair_Display,
-  Roboto_Mono
+  Roboto_Mono,
+  Alegreya,
+  Rouge_Script,
+  Edu_NSW_ACT_Cursive
 } from 'next/font/google';
 
 export const vt323 = VT323({
@@ -37,5 +40,24 @@ export const robotoMono = Roboto_Mono({
   weight: '700',
   subsets: ['latin'],
   variable: '--font-roboto-mono',
+  display: 'swap',
+});
+
+export const alegreya = Alegreya({
+  subsets: ['latin'],
+  variable: '--font-alegreya',
+  display: 'swap',
+});
+
+export const rougeScript = Rouge_Script({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-rouge-script',
+  display: 'swap',
+});
+
+export const eduCursive = Edu_NSW_ACT_Cursive({
+  subsets: ['latin'],
+  variable: '--font-edu-cursive',
   display: 'swap',
 });

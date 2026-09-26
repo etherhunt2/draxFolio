@@ -23,28 +23,39 @@ const slideVariants = {
     }),
 };
 
-export default function ProjectCard({ project, variant = 'default', index = 0 }) {
+export default function ProjectCard({ project, variant = 'default', index = 0, priority = false }) {
     const { title, description, images = [], link, github, tags = [] } = project;
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState(1);
     const [isHovered, setIsHovered] = useState(false);
     const [transitionUrl, setTransitionUrl] = useState(null);
     const [isBooted, setIsBooted] = useState(variant !== 'cyberpunk');
+    const [isVisible, setIsVisible] = useState(false);
 
     const cardRef = useRef(null);
     const scanlineRef = useRef(null);
     const screenRef = useRef(null);
     const statusLedRef = useRef(null);
 
+    // Visibility Observer
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => setIsVisible(entry.isIntersecting),
+            { threshold: 0.1 }
+        );
+        if (cardRef.current) observer.observe(cardRef.current);
+        return () => observer.disconnect();
+    }, []);
+
     // Auto slideshow for screenshots: 1s static display + seamless slide transition
     useEffect(() => {
-        if (!images || images.length <= 1 || isHovered) return;
+        if (!images || images.length <= 1 || isHovered || !isVisible) return;
         const interval = setInterval(() => {
             setDirection(1);
             setCurrentIndex((prev) => (prev + 1) % images.length);
         }, 1800);
         return () => clearInterval(interval);
-    }, [images, isHovered]);
+    }, [images, isHovered, isVisible]);
 
     // Cyberpunk Tech Boot Sequence with ScrollTrigger
     useEffect(() => {
@@ -226,7 +237,8 @@ export default function ProjectCard({ project, variant = 'default', index = 0 })
                                     fill
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                                    priority={currentIndex === 0}
+                                    priority={priority && currentIndex === 0}
+                                    loading={!(priority && currentIndex === 0) ? "lazy" : undefined}
                                 />
                             </motion.div>
                         ) : (

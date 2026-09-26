@@ -1,11 +1,16 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
-import FeaturedProject from "@/components/FeaturedProject";
-import OtherProjects from "@/components/OtherProjects";
-import Stars from "@/utils/Stars";
 import { FaArrowLeft } from "react-icons/fa";
+import dynamic from "next/dynamic";
+
+export const metadata = {
+  title: 'Portfolio — Freelance Developer',
+  description: 'Explore my production builds and client architectures.',
+};
+
+const Stars = dynamic(() => import('@/utils/Stars'));
+const FeaturedProject = dynamic(() => import('@/components/FeaturedProject'));
+const OtherProjects = dynamic(() => import('@/components/OtherProjects'));
 
 export default function PortfolioPage() {
   return (

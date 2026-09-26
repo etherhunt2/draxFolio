@@ -427,6 +427,16 @@ const Stars = ({
     const container = containerRef.current;
     if (!container) return;
 
+    // Detect Mobile
+    const isMobile = window.innerWidth < 768;
+    const actualStarCount = isMobile ? Math.floor(starCount * 0.3) : starCount;
+    const actualBrightStarCount = isMobile ? Math.floor(brightStarCount * 0.3) : brightStarCount;
+    const actualGalaxyParticleCount = isMobile ? Math.floor(galaxyParticleCount * 0.3) : galaxyParticleCount;
+    const actualNebulaCount = isMobile ? Math.floor(nebulaCount * 0.3) : nebulaCount;
+    const bhX = isMobile ? 0 : 5;
+    const bhY = isMobile ? 0 : -1.5;
+    const galX = isMobile ? -2 : -6;
+
     // ── Renderer & Camera ───────────────────
     const renderer = new Renderer({ depth: false, alpha: true });
     const gl       = renderer.gl;
@@ -461,7 +471,7 @@ const Stars = ({
     // ═══════════════════════════════════════
     //  LAYER 1 — Nebula Clouds (back)
     // ═══════════════════════════════════════
-    const nebData = createStarFieldData(nebulaCount, NEBULA_COLORS);
+    const nebData = createStarFieldData(actualNebulaCount, NEBULA_COLORS);
     const nebGeo  = new Geometry(gl, {
       position: { size: 3, data: nebData.positions },
       random:   { size: 4, data: nebData.randoms },
@@ -479,7 +489,7 @@ const Stars = ({
     // ═══════════════════════════════════════
     //  LAYER 2 — Star Field
     // ═══════════════════════════════════════
-    const starData = createStarFieldData(starCount, STAR_COLORS);
+    const starData = createStarFieldData(actualStarCount, STAR_COLORS);
     const starGeo  = new Geometry(gl, {
       position: { size: 3, data: starData.positions },
       random:   { size: 4, data: starData.randoms },
@@ -497,7 +507,7 @@ const Stars = ({
     // ═══════════════════════════════════════
     //  LAYER 3 — Galaxy Spiral 1
     // ═══════════════════════════════════════
-    const gal1Data = createGalaxySpiralData(galaxyParticleCount, 2.5, 3);
+    const gal1Data = createGalaxySpiralData(actualGalaxyParticleCount, 2.5, 3);
     const gal1Geo  = new Geometry(gl, {
       position: { size: 3, data: gal1Data.positions },
       random:   { size: 4, data: gal1Data.randoms },
@@ -509,7 +519,7 @@ const Stars = ({
       transparent: true, depthTest: false,
     });
     const gal1Mesh = new Mesh(gl, { mode: gl.POINTS, geometry: gal1Geo, program: gal1Prog });
-    gal1Mesh.position.set(-6, 3, -12);
+    gal1Mesh.position.set(galX, 3, -12);
     gal1Mesh.rotation.x = 0.8;
     gal1Mesh.rotation.z = 0.3;
     gal1Mesh.renderOrder = 2;
@@ -518,7 +528,7 @@ const Stars = ({
     // ═══════════════════════════════════════
     //  LAYER 4 — Galaxy Spiral 2
     // ═══════════════════════════════════════
-    const gal2Data = createGalaxySpiralData(galaxyParticleCount, 1.8, 2);
+    const gal2Data = createGalaxySpiralData(actualGalaxyParticleCount, 1.8, 2);
     const gal2Geo  = new Geometry(gl, {
       position: { size: 3, data: gal2Data.positions },
       random:   { size: 4, data: gal2Data.randoms },
@@ -550,7 +560,7 @@ const Stars = ({
       transparent: true, depthTest: false,
     });
     const bhMesh = new Mesh(gl, { mode: gl.POINTS, geometry: bhGeo, program: bhProg });
-    bhMesh.position.set(5, -1.5, -8);
+    bhMesh.position.set(bhX, bhY, -8);
     bhMesh.renderOrder = 4;
     bhMesh.setParent(scene);
 
@@ -569,7 +579,7 @@ const Stars = ({
       transparent: true, depthTest: false,
     });
     const accMesh = new Mesh(gl, { mode: gl.POINTS, geometry: accGeo, program: accProg });
-    accMesh.position.set(5, -1.5, -8); // co-located with black hole
+    accMesh.position.set(bhX, bhY, -8); // co-located with black hole
     accMesh.rotation.x = 0.5;
     accMesh.renderOrder = 5;
     accMesh.setParent(scene);
@@ -577,7 +587,7 @@ const Stars = ({
     // ═══════════════════════════════════════
     //  LAYER 7 — Bright Stars (foreground)
     // ═══════════════════════════════════════
-    const brData = createStarFieldData(brightStarCount, BRIGHT_STAR_COLORS);
+    const brData = createStarFieldData(actualBrightStarCount, BRIGHT_STAR_COLORS);
     const brGeo  = new Geometry(gl, {
       position: { size: 3, data: brData.positions },
       random:   { size: 4, data: brData.randoms },

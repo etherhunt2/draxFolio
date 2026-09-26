@@ -13,15 +13,15 @@ export default {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        alegreya: ['Alegreya', 'serif'],
-        'rouge-script': ['Rouge Script', 'cursive'],
+        alegreya: ['var(--font-alegreya)', 'Alegreya', 'serif'],
+        'rouge-script': ['var(--font-rouge-script)', 'Rouge Script', 'cursive'],
         beon: ['Beon', 'sans-serif'],
         orbitron: ['var(--font-orbitron)', 'Orbitron', 'sans-serif'],
         vt323: ['var(--font-vt323)', 'VT323', 'monospace'],
-        'cedarville-cursive': ['"Cedarville Cursive"', 'cursive'],
-        'edu-cursive': ['"Edu NSW ACT Cursive"', 'cursive'],
-        'playfair-display': ['"Playfair Display"', 'serif'],
-        'roboto-mono': ['"Roboto Mono"', 'monospace'],
+        'cedarville-cursive': ['var(--font-cedarville)', '"Cedarville Cursive"', 'cursive'],
+        'edu-cursive': ['var(--font-edu-cursive)', '"Edu NSW ACT Cursive"', 'cursive'],
+        'playfair-display': ['var(--font-playfair)', '"Playfair Display"', 'serif'],
+        'roboto-mono': ['var(--font-roboto-mono)', '"Roboto Mono"', 'monospace'],
       },
       keyframes: {
         'infinite-scroll': {
