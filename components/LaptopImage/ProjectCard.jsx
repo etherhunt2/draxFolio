@@ -62,16 +62,56 @@ export default function ProjectCard({ project, variant = 'default', index = 0, p
         if (variant !== 'cyberpunk') return;
 
         const scrollerElement = typeof document !== 'undefined' ? document.getElementById('relative-div') : null;
+        let booted = false;
 
         const ctx = gsap.context(() => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: cardRef.current,
                     scroller: scrollerElement || undefined,
-                    start: 'top 88%',
-                    toggleActions: 'play none none reverse',
+                    start: 'top 95%',
+                    toggleActions: 'play none none none',
+                    once: true,
                 },
+                onComplete: () => { booted = true; },
             });
+
+            // Safety net: if ScrollTrigger never fires (fast scroll past),
+            // immediately reveal the card after a short delay
+            const fallbackTimer = setTimeout(() => {
+                if (!booted && cardRef.current) {
+                    const rect = cardRef.current.getBoundingClientRect();
+                    if (rect.top < window.innerHeight + 200) {
+                        gsap.set(cardRef.current, {
+                            opacity: 1, y: 0, scale: 1,
+                            filter: 'brightness(1) contrast(1)',
+                        });
+                        setIsBooted(true);
+                        booted = true;
+                    }
+                }
+            }, 800);
+
+            // Also listen for scroll to catch cards skipped by fast scrolling
+            const onScroll = () => {
+                if (booted) {
+                    (scrollerElement || window).removeEventListener('scroll', onScroll);
+                    return;
+                }
+                if (cardRef.current) {
+                    const rect = cardRef.current.getBoundingClientRect();
+                    if (rect.top < window.innerHeight + 50 && rect.bottom > -50) {
+                        gsap.set(cardRef.current, {
+                            opacity: 1, y: 0, scale: 1,
+                            filter: 'brightness(1) contrast(1)',
+                        });
+                        setIsBooted(true);
+                        booted = true;
+                        (scrollerElement || window).removeEventListener('scroll', onScroll);
+                    }
+                }
+            };
+            (scrollerElement || window).addEventListener('scroll', onScroll, { passive: true });
 
             // Step 1: Initial Card Hologram Materialization
             tl.fromTo(

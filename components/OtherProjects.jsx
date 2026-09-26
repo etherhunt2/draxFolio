@@ -119,7 +119,7 @@ export default function OlderProjects() {
         const scrollerElement = typeof document !== 'undefined' ? document.getElementById('relative-div') : null;
 
         const ctx = gsap.context(() => {
-            // Header Entrance
+            // Header Entrance — use 'play none none none' so it never reverses/hides
             if (headerRef.current) {
                 gsap.fromTo(
                     headerRef.current,
@@ -133,30 +133,81 @@ export default function OlderProjects() {
                             trigger: headerRef.current,
                             scroller: scrollerElement || undefined,
                             start: 'top 85%',
-                            toggleActions: 'play none none reverse',
+                            toggleActions: 'play none none none',
                         },
                     }
                 );
             }
 
-            // Batch Stagger Entrance
+            // Card Entrance — robust against fast/long scrolls
             const validCards = cardsRef.current.filter(Boolean);
             if (validCards.length > 0) {
+                // Track which cards have been revealed so we don't re-animate
+                const revealed = new Set();
+
+                const revealCards = (batch) => {
+                    const toReveal = batch.filter((el) => !revealed.has(el));
+                    if (toReveal.length === 0) return;
+                    toReveal.forEach((el) => revealed.add(el));
+                    gsap.to(toReveal, {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.9,
+                        stagger: 0.08,
+                        ease: 'power3.out',
+                    });
+                };
+
                 gsap.set(validCards, { opacity: 0, y: 60, scale: 0.92 });
                 ScrollTrigger.batch(validCards, {
                     scroller: scrollerElement || undefined,
-                    start: 'top 90%',
-                    onEnter: (batch) => {
-                        gsap.to(batch, {
-                            opacity: 1,
-                            y: 0,
-                            scale: 1,
-                            duration: 0.9,
-                            stagger: 0.1,
-                            ease: 'power3.out',
-                        });
-                    },
+                    start: 'top 95%',
+                    once: true,
+                    onEnter: revealCards,
                 });
+
+                // Safety net: after a short delay, reveal any cards already
+                // in or above the viewport that ScrollTrigger.batch missed
+                // (happens on fast scroll / instant jump)
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        validCards.forEach((card) => {
+                            if (revealed.has(card)) return;
+                            const rect = card.getBoundingClientRect();
+                            // If the card is above viewport bottom (already scrolled past or in view)
+                            if (rect.top < window.innerHeight + 100) {
+                                revealed.add(card);
+                                gsap.to(card, {
+                                    opacity: 1, y: 0, scale: 1,
+                                    duration: 0.5, ease: 'power2.out',
+                                });
+                            }
+                        });
+                    }, 300);
+                });
+
+                // Also catch fast scrolls in real-time via a scroll listener
+                const onScroll = () => {
+                    validCards.forEach((card) => {
+                        if (revealed.has(card)) return;
+                        const rect = card.getBoundingClientRect();
+                        if (rect.top < window.innerHeight + 50 && rect.bottom > -50) {
+                            revealed.add(card);
+                            gsap.to(card, {
+                                opacity: 1, y: 0, scale: 1,
+                                duration: 0.6, ease: 'power2.out',
+                            });
+                        }
+                    });
+                    // Once all revealed, remove listener
+                    if (revealed.size >= validCards.length) {
+                        const target = scrollerElement || window;
+                        target.removeEventListener('scroll', onScroll);
+                    }
+                };
+                const scrollTarget = scrollerElement || window;
+                scrollTarget.addEventListener('scroll', onScroll, { passive: true });
             }
 
             // Parallax Scrub for each column/card
