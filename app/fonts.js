@@ -5,8 +5,7 @@ import {
   Playfair_Display,
   Roboto_Mono,
   Alegreya,
-  Rouge_Script,
-  Edu_NSW_ACT_Cursive
+  Rouge_Script
 } from 'next/font/google';
 
 export const vt323 = VT323({
@@ -53,11 +52,5 @@ export const rougeScript = Rouge_Script({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-rouge-script',
-  display: 'swap',
-});
-
-export const eduCursive = Edu_NSW_ACT_Cursive({
-  subsets: ['latin'],
-  variable: '--font-edu-cursive',
   display: 'swap',
 });

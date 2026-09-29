@@ -14,8 +14,7 @@ import {
   playfairDisplay,
   robotoMono,
   alegreya,
-  rougeScript,
-  eduCursive
+  rougeScript
 } from '@/app/fonts';
 
 // Load the local font
@@ -54,7 +53,7 @@ export default function RootLayout({ children }) {
   }, []);
 
   return (
-    <html lang="en" className={`${dysto.variable} ${orbitron.variable} ${vt323.variable} ${cedarvilleCursive.variable} ${playfairDisplay.variable} ${robotoMono.variable} ${alegreya.variable} ${rougeScript.variable} ${eduCursive.variable}`}>
+    <html lang="en" className={`${dysto.variable} ${orbitron.variable} ${vt323.variable} ${cedarvilleCursive.variable} ${playfairDisplay.variable} ${robotoMono.variable} ${alegreya.variable} ${rougeScript.variable}`}>
       <head>
         <title>Freelance Developer — Sharnagat Yogesh</title>
         <meta name="description" content="Welcome to my portfolio website. Explore my projects and skills." />

@@ -74,12 +74,9 @@ export default function Transition({ images = [], targetUrl, onClose }) {
     const tl = gsap.timeline({
       onComplete: () => {
         try {
-          const opened = window.open(targetUrl, '_blank', 'noopener,noreferrer');
-          if (!opened) {
-            window.location.href = targetUrl;
-          }
-        } catch {
-          window.location.href = targetUrl;
+          window.open(targetUrl, '_blank', 'noopener,noreferrer');
+        } catch (e) {
+          console.error("Failed to open link:", e);
         }
         if (onClose) {
           onClose();

@@ -33,30 +33,53 @@ export default function HomeClient() {
 
   useEffect(() => {
     const updateMarginTop = () => {
-      const width = window.innerWidth;
-      if (width < 576) {
-        // Extra small devices (phones, less than 576px)
-        setMarginTop("150vh");
-      } else if (width >= 576 && width < 768) {
-        // Small devices (tablets, 576px and up)
-        setMarginTop("200vh");
-      } else if (width >= 768 && width < 992) {
-        // Medium devices (desktops, 768px and up)
-        setMarginTop("40vh");
-      } else if (width >= 992 && width < 1200) {
-        // Large devices (large desktops, 992px and up)
-        setMarginTop("30vh");
-      } else if (width >= 1200 && width < 2560) {
-        // Extra large devices (standard monitors like 1080p, 1440p)
-        setMarginTop("100vh");
+      const blackboard = document.querySelector('.blackboard');
+      if (blackboard) {
+        const windowHeight = window.innerHeight;
+        // The container is 100vh. The blackboard is absolute, starting at ~20vh.
+        const blackboardBottom = (windowHeight * 0.2) + blackboard.offsetHeight;
+        
+        // If the blackboard is taller than the 100vh container, calculate the overflow
+        if (blackboardBottom > windowHeight) {
+          // Add overflow amount + 150px padding to prevent overlap with Portfolio
+          const extraMargin = blackboardBottom - windowHeight + 150;
+          setMarginTop(`${extraMargin}px`);
+        } else {
+          // Default small padding if it fits perfectly
+          setMarginTop("15vh");
+        }
       } else {
-        // Ultra large devices (4K displays and up)
-        setMarginTop("30vh");
+        // Fallback for when blackboard is not found yet
+        const width = window.innerWidth;
+        if (width < 576) {
+          setMarginTop("150vh");
+        } else if (width >= 576 && width < 768) {
+          setMarginTop("180vh");
+        } else if (width >= 768 && width < 992) {
+          setMarginTop("50vh");
+        } else {
+          setMarginTop("30vh");
+        }
       }
     };
 
     updateMarginTop();
     window.addEventListener("resize", updateMarginTop);
+
+    let resizeObserver;
+    const observeBlackboard = () => {
+      const blackboard = document.querySelector('.blackboard');
+      if (blackboard) {
+        resizeObserver = new ResizeObserver(() => {
+          updateMarginTop();
+        });
+        resizeObserver.observe(blackboard);
+      } else {
+        // Retry after a short delay if it's not rendered yet
+        setTimeout(observeBlackboard, 100);
+      }
+    };
+    observeBlackboard();
 
     if (dockRef.current) {
       Draggable.create(dockRef.current, {
@@ -67,6 +90,13 @@ export default function HomeClient() {
         allowEventDefault: true,
       });
     }
+
+    return () => {
+      window.removeEventListener("resize", updateMarginTop);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+    };
   }, []);
 
   const items = [
