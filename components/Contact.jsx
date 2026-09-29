@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { gsap } from 'gsap';
-import { FaInstagram, FaFacebook, FaLinkedin, FaWhatsappSquare } from 'react-icons/fa';
+import { FaInstagram, FaFacebook, FaLinkedin, FaWhatsappSquare, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import styles from '@/app/styles/Contact.module.css';
 import Link from 'next/link';
 
@@ -155,10 +155,47 @@ const Contact = () => {
                     <span ref={el => headingRef.current[1] = el}>In</span>
                     <span ref={el => headingRef.current[2] = el}>Touch</span>
                 </h2>
-                <p>Phone: +91 91423 60746</p>
-                <p>Email: sharnagatyogesh2@gmail.com</p>
-                <p>Email 2: info@freelancedeveloper.tech</p>
-                <p>Address: Kankarbagh, Patna, Bihar, India</p>
+                <div className="flex flex-col gap-4 mt-8 mb-8 w-full max-w-lg">
+                    <a href="tel:+919142360746" className="flex items-center gap-5 p-4 rounded-xl bg-[#121826]/60 border border-cyan-500/20 backdrop-blur-md transition-all duration-300 hover:border-cyan-500/60 hover:bg-[#162032]/80 hover:shadow-[0_8px_25px_rgba(0,255,255,0.15)] group">
+                        <div className="flex items-center justify-center w-11 h-11 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-lg flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:bg-cyan-500/20 group-hover:shadow-[0_0_12px_rgba(0,255,255,0.4)]">
+                            <FaPhoneAlt />
+                        </div>
+                        <div className="flex flex-col">
+                            <span className="text-[0.72rem] font-bold tracking-[1.5px] text-cyan-400/85 uppercase mb-0.5 font-sans">Phone</span>
+                            <span className="text-[0.92rem] font-medium text-slate-100 tracking-[0.3px] group-hover:text-white transition-colors">+91 91423 60746</span>
+                        </div>
+                    </a>
+
+                    <a href="mailto:sharnagatyogesh2@gmail.com" className="flex items-center gap-5 p-4 rounded-xl bg-[#121826]/60 border border-cyan-500/20 backdrop-blur-md transition-all duration-300 hover:border-cyan-500/60 hover:bg-[#162032]/80 hover:shadow-[0_8px_25px_rgba(0,255,255,0.15)] group">
+                        <div className="flex items-center justify-center w-11 h-11 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-lg flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:bg-cyan-500/20 group-hover:shadow-[0_0_12px_rgba(0,255,255,0.4)]">
+                            <FaEnvelope />
+                        </div>
+                        <div className="flex flex-col min-w-0">
+                            <span className="text-[0.72rem] font-bold tracking-[1.5px] text-cyan-400/85 uppercase mb-0.5 font-sans">Email</span>
+                            <span className="text-[0.92rem] font-medium text-slate-100 tracking-[0.3px] group-hover:text-white transition-colors truncate">sharnagatyogesh2@gmail.com</span>
+                        </div>
+                    </a>
+
+                    <a href="mailto:info@freelancedeveloper.tech" className="flex items-center gap-5 p-4 rounded-xl bg-[#121826]/60 border border-cyan-500/20 backdrop-blur-md transition-all duration-300 hover:border-cyan-500/60 hover:bg-[#162032]/80 hover:shadow-[0_8px_25px_rgba(0,255,255,0.15)] group">
+                        <div className="flex items-center justify-center w-11 h-11 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-lg flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:bg-cyan-500/20 group-hover:shadow-[0_0_12px_rgba(0,255,255,0.4)]">
+                            <FaEnvelope />
+                        </div>
+                        <div className="flex flex-col min-w-0">
+                            <span className="text-[0.72rem] font-bold tracking-[1.5px] text-cyan-400/85 uppercase mb-0.5 font-sans">Secondary Email</span>
+                            <span className="text-[0.92rem] font-medium text-slate-100 tracking-[0.3px] group-hover:text-white transition-colors truncate">info@freelancedeveloper.tech</span>
+                        </div>
+                    </a>
+
+                    <div className="flex items-center gap-5 p-4 rounded-xl bg-[#121826]/60 border border-cyan-500/20 backdrop-blur-md transition-all duration-300 hover:border-cyan-500/60 hover:bg-[#162032]/80 hover:shadow-[0_8px_25px_rgba(0,255,255,0.15)] group">
+                        <div className="flex items-center justify-center w-11 h-11 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-lg flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:bg-cyan-500/20 group-hover:shadow-[0_0_12px_rgba(0,255,255,0.4)]">
+                            <FaMapMarkerAlt />
+                        </div>
+                        <div className="flex flex-col min-w-0">
+                            <span className="text-[0.72rem] font-bold tracking-[1.5px] text-cyan-400/85 uppercase mb-0.5 font-sans">Address</span>
+                            <span className="text-[0.92rem] font-medium text-slate-100 tracking-[0.3px] group-hover:text-white transition-colors break-words">Kankarbagh, Patna, Bihar, India</span>
+                        </div>
+                    </div>
+                </div>
                 <div className={`${styles.socialContainer} socialContainerr`}>
                     <Link href="https://www.instagram.com/raising_swag/" className="text-neon-green" target="_blank" rel="noopener noreferrer" onMouseEnter={() => handleMouseEnter(0)} onMouseLeave={() => handleMouseLeave(0)}>
                         <FaInstagram ref={el => socialIconsRef.current[0] = el} className={styles.socialIcon} />
