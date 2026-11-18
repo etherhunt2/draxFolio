@@ -20,20 +20,28 @@ const projects = [
         tags: ['PHP', 'Bootstrap', 'jQuery', 'MySQL'],
     },
     {
+        title: 'PyramidCI',
+        description: 'A platform for Man Power Hiring and Staff Provider Company.',
+        images: ['/portfolio/pyramidci/pyramid1.png', '/portfolio/pyramidci/pyramid2.png', '/portfolio/pyramidci/pyramid3.png', '/portfolio/pyramidci/pyramid4.png'],
+        link: 'https://pyramidci.com/',
+        github: '',
+        tags: ['HTML', 'CSS', 'JavaScript', 'PHP'],
+    },
+    {
+        title: 'Infinity Travel',
+        description: 'A platform for Travel & Tourism',
+        images: ['/portfolio/infinityTravel/1.png', '/portfolio/infinityTravel/2.png', '/portfolio/infinityTravel/3.png', '/portfolio/infinityTravel/4.png', '/portfolio/infinityTravel/5.png'],
+        link: 'https://theinfinitytravel.com/',
+        github: '',
+        tags: ['React.js', 'Node.js', 'PostgreSQL'],
+    },
+    {
         title: 'Build Pro',
         description: 'A construction company website built with Next.js and Tailwind CSS',
         images: ['/portfolio/buildPro/build1.png', '/portfolio/buildPro/build2.png', '/portfolio/buildPro/build3.png', '/portfolio/buildPro/build4.png', '/portfolio/buildPro/build5.png', '/portfolio/buildPro/build6.png'],
         link: 'https://buildprodemo.vercel.app/',
         github: 'https://github.com/etherhunt2/buildpro',
         tags: ['Next.js', 'Tailwind CSS', 'GSAP', 'Framer-Motion'],
-    },
-    {
-        title: 'Astro Baba',
-        description: 'Dynamic astrology consultation and automated horoscope booking service platform.',
-        images: ['/portfolio/astroBaba/astro1.png', '/portfolio/astroBaba/astro2.png', '/portfolio/astroBaba/astro3.png', '/portfolio/astroBaba/astro4.png', '/portfolio/astroBaba/astro5.png'],
-        link: 'https://astrobabademo.vercel.app/',
-        github: 'https://github.com/etherhunt2/astrobaba',
-        tags: ['React.js', 'Node.js', 'Tailwind CSS'],
     },
     {
         title: 'Funded GenZ',
@@ -43,14 +51,14 @@ const projects = [
         github: 'https://github.com/etherhunt2/fundedgenz',
         tags: ['React.js', 'Vite.js', 'Tailwind CSS'],
     },
-    {
-        title: 'Real Estate',
-        description: 'A Cyber Punk Themed, Real Estate platform built for high-throughput real estate business operations.',
-        images: ['/portfolio/realEstate/realestate1.png', '/portfolio/realEstate/realestate2.png', '/portfolio/realEstate/realestate3.png', '/portfolio/realEstate/realestate4.png', '/portfolio/realEstate/realestate5.png'],
-        link: 'https://realestatevue.vercel.app/',
-        github: 'https://github.com/etherhunt2/estate-vue/',
-        tags: ['React.js', 'Node.js', 'Tailwind CSS', 'Framer Motion'],
-    },
+    // {
+    //     title: 'Real Estate',
+    //     description: 'A Cyber Punk Themed, Real Estate platform built for high-throughput real estate business operations.',
+    //     images: ['/portfolio/realEstate/realestate1.png', '/portfolio/realEstate/realestate2.png', '/portfolio/realEstate/realestate3.png', '/portfolio/realEstate/realestate4.png', '/portfolio/realEstate/realestate5.png'],
+    //     link: 'https://realestatevue.vercel.app/',
+    //     github: 'https://github.com/etherhunt2/estate-vue/',
+    //     tags: ['React.js', 'Node.js', 'Tailwind CSS', 'Framer Motion'],
+    // },
     {
         title: 'Zee Care Hospital',
         description: 'A platform for healthcare management and patient care coordination.',
@@ -58,30 +66,6 @@ const projects = [
         link: 'https://zeecarehospital.vercel.app/',
         github: 'https://github.com/etherhunt2/hospital',
         tags: ['React.js', 'Vite.js', 'Tailwind CSS', 'Python-Flask'],
-    },
-    {
-        title: 'PyramidCI',
-        description: 'A platform for Man Power Hiring and Staff Provider Company.',
-        images: ['/portfolio/pyramidci/pyramid1.png', '/portfolio/pyramidci/pyramid2.png', '/portfolio/pyramidci/pyramid3.png', '/portfolio/pyramidci/pyramid4.png'],
-        link: 'https://pyramidci.com/',
-        github: '',
-        tags: ['HTML', 'CSS', 'JavaScript', 'PHP'],
-    },
-    {
-        title: 'KukuFM Demo',
-        description: 'An OTT platform with Audio Stories and Audiobooks.',
-        images: ['/portfolio/kukuFMdemo/kuku1.png', '/portfolio/kukuFMdemo/kuku2.png', '/portfolio/kukuFMdemo/kuku3.png', '/portfolio/kukuFMdemo/kuku4.png', '/portfolio/kukuFMdemo/kuku5.png'],
-        link: 'https://kukufmdemo.vercel.app/',
-        github: 'https://github.com/etherhunt2/kukufm',
-        tags: ['React.js', 'Vite.js', 'Tailwind CSS'],
-    },
-    {
-        title: 'Goblu EV',
-        description: 'Electric mobility management portal with live charging station telemetry and fleet scheduling.',
-        images: ['/portfolio/gobluEV/goblu1.png', '/portfolio/gobluEV/goblu2.png', '/portfolio/gobluEV/goblu3.png', '/portfolio/gobluEV/goblu4.png', '/portfolio/gobluEV/goblu5.png', '/portfolio/gobluEV/goblu6.png'],
-        link: 'https://goblu.in/',
-        github: '',
-        tags: ['React.js', 'Node.js', 'Tailwind CSS'],
     },
     {
         title: 'Salaada',
@@ -92,12 +76,28 @@ const projects = [
         tags: ['Next.js', 'TypeScript', 'Stripe'],
     },
     {
+        title: 'Astro Baba',
+        description: 'Dynamic astrology consultation and automated horoscope booking service platform.',
+        images: ['/portfolio/astroBaba/astro1.png', '/portfolio/astroBaba/astro2.png', '/portfolio/astroBaba/astro3.png', '/portfolio/astroBaba/astro4.png', '/portfolio/astroBaba/astro5.png'],
+        link: 'https://astrobabademo.vercel.app/',
+        github: 'https://github.com/etherhunt2/astrobaba',
+        tags: ['React.js', 'Node.js', 'Tailwind CSS'],
+    },
+    {
+        title: 'KukuFM Demo',
+        description: 'An OTT platform with Audio Stories and Audiobooks.',
+        images: ['/portfolio/kukuFMdemo/kuku1.png', '/portfolio/kukuFMdemo/kuku2.png', '/portfolio/kukuFMdemo/kuku3.png', '/portfolio/kukuFMdemo/kuku4.png', '/portfolio/kukuFMdemo/kuku5.png'],
+        link: 'https://kukufmdemo.vercel.app/',
+        github: 'https://github.com/etherhunt2/kukufm',
+        tags: ['React.js', 'Vite.js', 'Tailwind CSS'],
+    },
+    {
         title: 'Women Up Fitness',
         description: 'Comprehensive fitness studio community app with on-demand class streaming and habit tracking.',
         images: ['/portfolio/womenUP/fitness1.png', '/portfolio/womenUP/fitness2.png', '/portfolio/womenUP/fitness3.png', '/portfolio/womenUP/fitness4.png', '/portfolio/womenUP/fitness5.png', '/portfolio/womenUP/fitness6.png', '/portfolio/womenUP/fitness7.png'],
-        link: 'https://womenup.in/',
+        link: 'https://womenup.net/',
         github: '',
-        tags: ['React.js', 'Firebase', 'Tailwind'],
+        tags: ['WordPress', 'PHP', 'mySQL'],
     },
     {
         title: 'MR Lioness',
@@ -107,6 +107,14 @@ const projects = [
         github: '',
         tags: ['Next.js', 'GSAP', 'CSS Modules'],
     },
+    {
+        title: 'Goblu EV',
+        description: 'Electric mobility management portal with live charging station telemetry and fleet scheduling.',
+        images: ['/portfolio/gobluEV/goblu1.png', '/portfolio/gobluEV/goblu2.png', '/portfolio/gobluEV/goblu3.png', '/portfolio/gobluEV/goblu4.png', '/portfolio/gobluEV/goblu5.png', '/portfolio/gobluEV/goblu6.png'],
+        link: 'https://goblu.in/',
+        github: '',
+        tags: ['React.js', 'Node.js', 'Tailwind CSS'],
+    },
 ];
 
 export default function OlderProjects() {
@@ -114,137 +122,96 @@ export default function OlderProjects() {
     const headerRef = useRef(null);
     const cardsRef = useRef([]);
 
-    // Continuous Scroll-Driven Scrub & Multi-Layer Parallax
+    // Continuous Scroll-Driven Scrub & Reliable Card Entrance
     useEffect(() => {
-        const scrollerElement = typeof document !== 'undefined' ? document.getElementById('relative-div') : null;
-
         const ctx = gsap.context(() => {
-            // Header Entrance — use 'play none none none' so it never reverses/hides
+            // Header Entrance
             if (headerRef.current) {
-                gsap.fromTo(
-                    headerRef.current,
-                    { opacity: 0, y: 40 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        duration: 1,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: headerRef.current,
-                            scroller: scrollerElement || undefined,
-                            start: 'top 85%',
-                            toggleActions: 'play none none none',
-                        },
-                    }
-                );
+                const rect = headerRef.current.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    gsap.set(headerRef.current, { opacity: 1, y: 0 });
+                } else {
+                    gsap.fromTo(
+                        headerRef.current,
+                        { opacity: 0, y: 35 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: 'power3.out',
+                            scrollTrigger: {
+                                trigger: headerRef.current,
+                                start: 'top 85%',
+                                toggleActions: 'play none none none',
+                                once: true,
+                            },
+                        }
+                    );
+                }
             }
 
-            // Card Entrance — robust against fast/long scrolls
+            // Card Entrance with IntersectionObserver (instant & reliable on any scroll speed)
             const validCards = cardsRef.current.filter(Boolean);
             if (validCards.length > 0) {
-                // Track which cards have been revealed so we don't re-animate
                 const revealed = new Set();
 
-                const revealCards = (batch) => {
-                    const toReveal = batch.filter((el) => !revealed.has(el));
-                    if (toReveal.length === 0) return;
-                    toReveal.forEach((el) => revealed.add(el));
-                    gsap.to(toReveal, {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        duration: 0.9,
-                        stagger: 0.08,
-                        ease: 'power3.out',
-                    });
+                const revealCard = (card, instant = false) => {
+                    if (revealed.has(card)) return;
+                    revealed.add(card);
+                    if (instant) {
+                        gsap.set(card, { opacity: 1, y: 0, scale: 1 });
+                    } else {
+                        gsap.to(card, {
+                            opacity: 1,
+                            y: 0,
+                            scale: 1,
+                            duration: 0.65,
+                            ease: 'power3.out',
+                        });
+                    }
                 };
 
-                gsap.set(validCards, { opacity: 0, y: 60, scale: 0.92 });
-                ScrollTrigger.batch(validCards, {
-                    scroller: scrollerElement || undefined,
-                    start: 'top 95%',
-                    once: true,
-                    onEnter: revealCards,
-                });
-
-                // Safety net: after a short delay, reveal any cards already
-                // in or above the viewport that ScrollTrigger.batch missed
-                // (happens on fast scroll / instant jump)
-                requestAnimationFrame(() => {
-                    setTimeout(() => {
-                        validCards.forEach((card) => {
-                            if (revealed.has(card)) return;
-                            const rect = card.getBoundingClientRect();
-                            // If the card is above viewport bottom (already scrolled past or in view)
-                            if (rect.top < window.innerHeight + 100) {
-                                revealed.add(card);
-                                gsap.to(card, {
-                                    opacity: 1, y: 0, scale: 1,
-                                    duration: 0.5, ease: 'power2.out',
-                                });
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting || entry.boundingClientRect.top < window.innerHeight + 80) {
+                                revealCard(entry.target, entry.boundingClientRect.bottom < 0);
+                                observer.unobserve(entry.target);
                             }
                         });
-                    }, 300);
+                    },
+                    {
+                        root: null,
+                        rootMargin: '120px 0px 50px 0px',
+                        threshold: 0,
+                    }
+                );
+
+                validCards.forEach((card) => {
+                    const rect = card.getBoundingClientRect();
+                    if (rect.top < window.innerHeight + 80) {
+                        revealCard(card, rect.bottom < 0);
+                    } else {
+                        gsap.set(card, { opacity: 0, y: 35, scale: 0.95 });
+                        observer.observe(card);
+                    }
                 });
 
-                // Also catch fast scrolls in real-time via a scroll listener
+                // Safety net scroll listener for extreme jumps
                 const onScroll = () => {
                     validCards.forEach((card) => {
                         if (revealed.has(card)) return;
                         const rect = card.getBoundingClientRect();
-                        if (rect.top < window.innerHeight + 50 && rect.bottom > -50) {
-                            revealed.add(card);
-                            gsap.to(card, {
-                                opacity: 1, y: 0, scale: 1,
-                                duration: 0.6, ease: 'power2.out',
-                            });
+                        if (rect.top < window.innerHeight + 100) {
+                            revealCard(card, rect.bottom < 0);
                         }
                     });
-                    // Once all revealed, remove listener
                     if (revealed.size >= validCards.length) {
-                        const target = scrollerElement || window;
-                        target.removeEventListener('scroll', onScroll);
+                        window.removeEventListener('scroll', onScroll);
                     }
                 };
-                const scrollTarget = scrollerElement || window;
-                scrollTarget.addEventListener('scroll', onScroll, { passive: true });
+                window.addEventListener('scroll', onScroll, { passive: true });
             }
-
-            // Parallax Scrub for each column/card
-            cardsRef.current.forEach((cardEl, i) => {
-                if (!cardEl) return;
-
-                // Alternate parallax speed based on 3-column layout
-                const col = i % 3;
-                const parallaxDistance = col === 0 ? 35 : col === 1 ? -30 : 20;
-
-                // Continuous Scroll-Driven Scrub Parallax
-                gsap.to(cardEl, {
-                    y: parallaxDistance,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: sectionRef.current,
-                        scroller: scrollerElement || undefined,
-                        start: 'top bottom',
-                        end: 'bottom top',
-                        scrub: 1.5,
-                    },
-                });
-
-                // Center Sweet Spot Highlight
-                gsap.to(cardEl, {
-                    scale: 1.02,
-                    duration: 0.4,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: cardEl,
-                        scroller: scrollerElement || undefined,
-                        start: 'top 65%',
-                        end: 'bottom 35%',
-                        toggleActions: 'play reverse play reverse',
-                    },
-                });
-            });
         }, sectionRef);
 
         return () => ctx.revert();
@@ -256,7 +223,7 @@ export default function OlderProjects() {
             className="w-full min-h-screen py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto select-none"
         >
             {/* Header */}
-            <div ref={headerRef} className="text-center mb-16">
+            {/* <div ref={headerRef} className="text-center mb-16">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1 mb-4 rounded-full bg-blue-950/40 border border-blue-500/30 text-blue-400 text-xs font-mono tracking-widest uppercase">
                     <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse shadow-[0_0_8px_#3b82f6]" />
                     PORTFOLIO ARCHIVE // DEMO PROJECTS
@@ -271,7 +238,7 @@ export default function OlderProjects() {
                 <p className="mt-4 text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto">
                     Continuous timeline of enterprise web applications, e-commerce architectures, and bespoke interfaces.
                 </p>
-            </div>
+            </div> */}
 
             {/* Continuous Parallax Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -38,7 +38,7 @@ export default function HomeClient() {
         const windowHeight = window.innerHeight;
         // The container is 100vh. The blackboard is absolute, starting at ~20vh.
         const blackboardBottom = (windowHeight * 0.2) + blackboard.offsetHeight;
-        
+
         // If the blackboard is taller than the 100vh container, calculate the overflow
         if (blackboardBottom > windowHeight) {
           // Add overflow amount + 150px padding to prevent overlap with Portfolio

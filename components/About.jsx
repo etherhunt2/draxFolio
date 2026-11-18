@@ -192,7 +192,7 @@ const About = () => {
                     Sharnagat Yogesh
                 </h1>
                 <h2 ref={subHeadingRef} className={`${styles.subHeading || ''} font-rouge-script`}>
-                    Freelance Developer
+                    Full-Stack Developer
                 </h2>
                 <p ref={welcomeMessageRef} className={`${styles.welcomeMessage || ''} mt-2 md:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl capitalize`}>
                     Welcome to my portfolio!
@@ -201,8 +201,8 @@ const About = () => {
 
             {/* Right 50% Image Container */}
             <div ref={profilePicRef} className={`${styles.profilePic || ''} w-full md:w-1/2 flex justify-center items-center relative mt-10 md:mt-0`}>
-                <div 
-                    ref={imageRef} 
+                <div
+                    ref={imageRef}
                     className="relative w-56 h-72 sm:w-64 sm:h-[340px] md:w-[320px] md:h-[440px] lg:w-[380px] lg:h-[520px] xl:w-[430px] xl:h-[580px] rounded-[50%] overflow-hidden shadow-[0_0_50px_rgba(0,255,255,0.25)] border-4 border-cyan-500/40"
                 >
                     <Image

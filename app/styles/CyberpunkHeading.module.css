@@ -1,0 +1,69 @@
+.headingWrapper {
+  perspective: 1200px;
+}
+
+.hudBadge {
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.15);
+}
+
+.hudDot {
+  box-shadow: 0 0 8px #22d3ee;
+}
+
+.masterHeadingWrapper {
+  transform-style: preserve-3d;
+}
+
+.glitchRed {
+  color: #ff0055;
+  text-shadow: 0 0 15px #ff0055, 0 0 30px #ff0055;
+  transform: translateZ(-15px);
+  transform-style: preserve-3d;
+}
+
+.glitchCyan {
+  color: #00f0ff;
+  text-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff;
+  transform: translateZ(15px);
+  transform-style: preserve-3d;
+}
+
+.heading3D {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.word1 {
+  transform-style: preserve-3d;
+  text-shadow:
+    0 1px 0 #d4d4d8,
+    0 2px 0 #a1a1aa,
+    0 3px 0 #71717a,
+    0 4px 0 #52525b,
+    0 5px 0 #3f3f46,
+    0 6px 0 #27272a,
+    0 7px 0 #18181b,
+    0 10px 20px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.word2 {
+  transform-style: preserve-3d;
+  text-shadow:
+    0 1px 0 #38bdf8,
+    0 2px 0 #0ea5e9,
+    0 3px 0 #0284c7,
+    0 4px 0 #0369a1,
+    0 5px 0 #075985,
+    0 6px 0 #0c4a6e,
+    0 7px 0 #082f49,
+    0 10px 20px rgba(0, 0, 0, 0.8),
+    0 0 25px rgba(0, 240, 255, 0.7),
+    0 0 50px rgba(14, 165, 233, 0.4);
+}
+
+.letter {
+  display: inline-block;
+  transform-style: preserve-3d;
+  will-change: transform;
+}

@@ -26,7 +26,7 @@ export default function Navbar() {
     <nav className={`sticky top-0 z-50 bg-black ${isScrolled ? 'bg-opacity-50' : 'bg-opacity-80'} ${styles.navbar}`}>
       <div className={styles.logo}>
         <Link href="/" className="text-2xl font-bold text-neon-green">
-          The Portfolio
+          My Portfolio
         </Link>
       </div>
       <div className={styles.toggle}>

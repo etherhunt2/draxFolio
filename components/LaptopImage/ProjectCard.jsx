@@ -57,84 +57,53 @@ export default function ProjectCard({ project, variant = 'default', index = 0, p
         return () => clearInterval(interval);
     }, [images, isHovered, isVisible]);
 
-    // Cyberpunk Tech Boot Sequence with ScrollTrigger
+    // Cyberpunk Tech Boot Sequence with IntersectionObserver & GSAP
     useEffect(() => {
-        if (variant !== 'cyberpunk') return;
+        if (variant !== 'cyberpunk') {
+            setIsBooted(true);
+            return;
+        }
 
-        const scrollerElement = typeof document !== 'undefined' ? document.getElementById('relative-div') : null;
-        let booted = false;
+        const el = cardRef.current;
+        if (!el) return;
 
-        const ctx = gsap.context(() => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: cardRef.current,
-                    scroller: scrollerElement || undefined,
-                    start: 'top 95%',
-                    toggleActions: 'play none none none',
-                    once: true,
-                },
-                onComplete: () => { booted = true; },
-            });
+        let hasBooted = false;
 
-            // Safety net: if ScrollTrigger never fires (fast scroll past),
-            // immediately reveal the card after a short delay
-            const fallbackTimer = setTimeout(() => {
-                if (!booted && cardRef.current) {
-                    const rect = cardRef.current.getBoundingClientRect();
-                    if (rect.top < window.innerHeight + 200) {
-                        gsap.set(cardRef.current, {
-                            opacity: 1, y: 0, scale: 1,
-                            filter: 'brightness(1) contrast(1)',
-                        });
-                        setIsBooted(true);
-                        booted = true;
-                    }
-                }
-            }, 800);
+        const bootCard = (instant = false) => {
+            if (hasBooted) return;
+            hasBooted = true;
+            setIsBooted(true);
 
-            // Also listen for scroll to catch cards skipped by fast scrolling
-            const onScroll = () => {
-                if (booted) {
-                    (scrollerElement || window).removeEventListener('scroll', onScroll);
-                    return;
-                }
-                if (cardRef.current) {
-                    const rect = cardRef.current.getBoundingClientRect();
-                    if (rect.top < window.innerHeight + 50 && rect.bottom > -50) {
-                        gsap.set(cardRef.current, {
-                            opacity: 1, y: 0, scale: 1,
-                            filter: 'brightness(1) contrast(1)',
-                        });
-                        setIsBooted(true);
-                        booted = true;
-                        (scrollerElement || window).removeEventListener('scroll', onScroll);
-                    }
-                }
-            };
-            (scrollerElement || window).addEventListener('scroll', onScroll, { passive: true });
+            if (instant) {
+                gsap.set(el, {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    filter: 'brightness(1) contrast(1)',
+                });
+                return;
+            }
 
-            // Step 1: Initial Card Hologram Materialization
+            const tl = gsap.timeline();
             tl.fromTo(
-                cardRef.current,
+                el,
                 {
                     opacity: 0,
-                    y: 45,
-                    scale: 0.94,
-                    filter: 'brightness(1.8) contrast(1.2)',
+                    y: 35,
+                    scale: 0.95,
+                    filter: 'brightness(1.6) contrast(1.2)',
                 },
                 {
                     opacity: 1,
                     y: 0,
                     scale: 1,
                     filter: 'brightness(1) contrast(1)',
-                    duration: 0.8,
-                    delay: (index % 3) * 0.12,
+                    duration: 0.65,
+                    delay: (index % 3) * 0.08,
                     ease: 'power3.out',
-                    onComplete: () => setIsBooted(true),
                 }
             );
 
-            // Step 2: Screen CRT Power-On & Scanline Sweep
             if (scanlineRef.current) {
                 tl.fromTo(
                     scanlineRef.current,
@@ -142,14 +111,13 @@ export default function ProjectCard({ project, variant = 'default', index = 0, p
                     {
                         y: '220%',
                         opacity: 0,
-                        duration: 0.9,
+                        duration: 0.8,
                         ease: 'power1.inOut',
                     },
-                    '-=0.4'
+                    '-=0.3'
                 );
             }
 
-            // Step 3: LED Status Indicator Online Flip
             if (statusLedRef.current) {
                 tl.fromTo(
                     statusLedRef.current,
@@ -160,12 +128,61 @@ export default function ProjectCard({ project, variant = 'default', index = 0, p
                         duration: 0.4,
                         ease: 'back.out(2)',
                     },
-                    '-=0.3'
+                    '-=0.2'
                 );
             }
-        }, cardRef);
+        };
 
-        return () => ctx.revert();
+        // If card is already in view or scrolled past, boot immediately
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight + 80) {
+            bootCard(rect.bottom < 0);
+            return;
+        }
+
+        // Set initial hidden state for cards below viewport
+        gsap.set(el, {
+            opacity: 0,
+            y: 35,
+            scale: 0.95,
+            filter: 'brightness(1.6) contrast(1.2)',
+        });
+
+        // IntersectionObserver triggers well before reaching card (120px rootMargin)
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting || entry.boundingClientRect.top < window.innerHeight + 80) {
+                    bootCard(entry.boundingClientRect.bottom < 0);
+                    observer.disconnect();
+                }
+            },
+            {
+                root: null,
+                rootMargin: '120px 0px 50px 0px',
+                threshold: 0,
+            }
+        );
+
+        observer.observe(el);
+
+        // Fallback for extreme fast scroll / jump
+        const onScrollCheck = () => {
+            if (hasBooted) {
+                window.removeEventListener('scroll', onScrollCheck);
+                return;
+            }
+            const r = el.getBoundingClientRect();
+            if (r.top < window.innerHeight + 100) {
+                bootCard(r.bottom < 0);
+                window.removeEventListener('scroll', onScrollCheck);
+            }
+        };
+        window.addEventListener('scroll', onScrollCheck, { passive: true });
+
+        return () => {
+            observer.disconnect();
+            window.removeEventListener('scroll', onScrollCheck);
+        };
     }, [variant, index]);
 
     const getDomain = (url) => {
@@ -184,19 +201,16 @@ export default function ProjectCard({ project, variant = 'default', index = 0, p
             ref={cardRef}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className={`group relative flex flex-col justify-between rounded-2xl overflow-hidden transition-all duration-300 ${
-                isCyber
-                    ? `bg-[#0f1117]/95 border ${
-                          isHovered
-                              ? 'border-cyan-400 shadow-[0_0_30px_rgba(6,182,212,0.35)] -translate-y-1'
-                              : 'border-cyan-900/40 shadow-xl'
-                      }`
-                    : `bg-[#151518] border ${
-                          isHovered
-                              ? 'border-blue-500/70 shadow-[0_0_25px_rgba(59,130,246,0.3)] -translate-y-1'
-                              : 'border-zinc-800 shadow-xl'
-                      }`
-            }`}
+            className={`group relative flex flex-col justify-between rounded-2xl overflow-hidden transition-all duration-300 ${isCyber
+                ? `bg-[#0f1117]/95 border ${isHovered
+                    ? 'border-cyan-400 shadow-[0_0_30px_rgba(6,182,212,0.35)] -translate-y-1'
+                    : 'border-cyan-900/40 shadow-xl'
+                }`
+                : `bg-[#151518] border ${isHovered
+                    ? 'border-blue-500/70 shadow-[0_0_25px_rgba(59,130,246,0.3)] -translate-y-1'
+                    : 'border-zinc-800 shadow-xl'
+                }`
+                }`}
         >
             {/* Cyberpunk HUD Tech Corner Accents */}
             {isCyber && (
@@ -211,11 +225,10 @@ export default function ProjectCard({ project, variant = 'default', index = 0, p
             <div>
                 {/* Header Bar */}
                 <div
-                    className={`flex items-center px-4 py-3 border-b ${
-                        isCyber
-                            ? 'bg-[#0a0d14] border-cyan-900/40'
-                            : 'bg-[#1e1e24] border-zinc-800/80'
-                    }`}
+                    className={`flex items-center px-4 py-3 border-b ${isCyber
+                        ? 'bg-[#0a0d14] border-cyan-900/40'
+                        : 'bg-[#1e1e24] border-zinc-800/80'
+                        }`}
                 >
                     <div className="flex items-center gap-1.5 flex-shrink-0">
                         {isCyber ? (
@@ -224,7 +237,7 @@ export default function ProjectCard({ project, variant = 'default', index = 0, p
                                 className="flex items-center gap-1.5 font-mono text-[10px] text-cyan-400 tracking-wider font-semibold"
                             >
                                 <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
-                                <span>SYS_OK // 0x{index + 1}</span>
+                                <span>LIVE // 0x{index + 1}</span>
                             </div>
                         ) : (
                             <>
@@ -237,11 +250,10 @@ export default function ProjectCard({ project, variant = 'default', index = 0, p
 
                     <div className="flex-1 flex justify-center ml-2 mr-4 sm:mr-8">
                         <div
-                            className={`flex items-center justify-center px-3 py-1 rounded-md text-[11px] font-mono w-full max-w-[190px] truncate border ${
-                                isCyber
-                                    ? 'bg-cyan-950/40 text-cyan-300 border-cyan-800/50'
-                                    : 'bg-[#2a2a30] text-zinc-400 border-zinc-800'
-                            }`}
+                            className={`flex items-center justify-center px-3 py-1 rounded-md text-[11px] font-mono w-full max-w-[190px] truncate border ${isCyber
+                                ? 'bg-cyan-950/40 text-cyan-300 border-cyan-800/50'
+                                : 'bg-[#2a2a30] text-zinc-400 border-zinc-800'
+                                }`}
                         >
                             {link ? getDomain(link) : 'project.local'}
                         </div>
@@ -325,13 +337,12 @@ export default function ProjectCard({ project, variant = 'default', index = 0, p
                                             setCurrentIndex(idx);
                                         }
                                     }}
-                                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                                        idx === currentIndex
-                                            ? isCyber
-                                                ? 'bg-cyan-400 scale-125 shadow-[0_0_6px_#22d3ee]'
-                                                : 'bg-white scale-125'
-                                            : 'bg-white/40 hover:bg-white/80'
-                                    }`}
+                                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${idx === currentIndex
+                                        ? isCyber
+                                            ? 'bg-cyan-400 scale-125 shadow-[0_0_6px_#22d3ee]'
+                                            : 'bg-white scale-125'
+                                        : 'bg-white/40 hover:bg-white/80'
+                                        }`}
                                     aria-label={`Go to slide ${idx + 1}`}
                                 />
                             ))}
@@ -343,9 +354,8 @@ export default function ProjectCard({ project, variant = 'default', index = 0, p
                 <div className="p-5">
                     <div className="flex items-center gap-2 mb-2">
                         <div
-                            className={`flex-shrink-0 ${
-                                isCyber ? 'text-cyan-400' : 'text-yellow-500'
-                            }`}
+                            className={`flex-shrink-0 ${isCyber ? 'text-cyan-400' : 'text-yellow-500'
+                                }`}
                         >
                             <svg
                                 width="18"
@@ -377,11 +387,10 @@ export default function ProjectCard({ project, variant = 'default', index = 0, p
                             {tags.map((tag, i) => (
                                 <span
                                     key={i}
-                                    className={`text-[11px] px-2.5 py-1 rounded-md font-mono font-medium border ${
-                                        isCyber
-                                            ? 'bg-cyan-950/30 text-cyan-300 border-cyan-800/40 shadow-[0_0_10px_rgba(6,182,212,0.1)]'
-                                            : 'bg-[#2a2a30] text-zinc-300 border-zinc-700/50'
-                                    }`}
+                                    className={`text-[11px] px-2.5 py-1 rounded-md font-mono font-medium border ${isCyber
+                                        ? 'bg-cyan-950/30 text-cyan-300 border-cyan-800/40 shadow-[0_0_10px_rgba(6,182,212,0.1)]'
+                                        : 'bg-[#2a2a30] text-zinc-300 border-zinc-700/50'
+                                        }`}
                                 >
                                     {tag}
                                 </span>
@@ -400,22 +409,20 @@ export default function ProjectCard({ project, variant = 'default', index = 0, p
                             e.preventDefault();
                             if (!transitionUrl) setTransitionUrl(link);
                         }}
-                        className={`flex-1 flex items-center justify-center gap-2 text-white text-sm font-medium py-2 px-4 rounded-xl transition-all duration-200 ${
-                            isCyber
-                                ? 'bg-cyan-600 hover:bg-cyan-500 shadow-[0_0_18px_rgba(6,182,212,0.35)] active:shadow-none'
-                                : 'bg-[#2175f3] hover:bg-[#1a5fce] shadow-lg shadow-blue-500/20'
-                        } ${
-                            transitionUrl === link
+                        className={`flex-1 flex items-center justify-center gap-2 text-white text-sm font-medium py-2 px-4 rounded-xl transition-all duration-200 ${isCyber
+                            ? 'bg-cyan-600 hover:bg-cyan-500 shadow-[0_0_18px_rgba(6,182,212,0.35)] active:shadow-none'
+                            : 'bg-[#2175f3] hover:bg-[#1a5fce] shadow-lg shadow-blue-500/20'
+                            } ${transitionUrl === link
                                 ? 'bg-gray-600 cursor-not-allowed opacity-50'
                                 : ''
-                        }`}
+                            }`}
                     >
                         <span>
                             {transitionUrl === link
                                 ? 'Loading...'
                                 : isCyber
-                                ? 'Execute //'
-                                : 'Visit Site'}
+                                    ? 'Execute //'
+                                    : 'Visit Site'}
                         </span>
                         <FaExternalLinkAlt className="text-[10px]" />
                     </a>
@@ -427,15 +434,13 @@ export default function ProjectCard({ project, variant = 'default', index = 0, p
                             e.preventDefault();
                             if (!transitionUrl) setTransitionUrl(github);
                         }}
-                        className={`flex-1 flex items-center justify-center gap-2 text-zinc-200 text-sm font-medium py-2 px-4 rounded-xl border border-zinc-700/50 transition-all duration-200 ${
-                            isCyber
-                                ? 'bg-[#121622] hover:bg-[#182030] hover:text-cyan-300 hover:border-cyan-500/40'
-                                : 'bg-[#2a2a30] hover:bg-[#35353d] hover:text-white'
-                        } ${
-                            transitionUrl === github
+                        className={`flex-1 flex items-center justify-center gap-2 text-zinc-200 text-sm font-medium py-2 px-4 rounded-xl border border-zinc-700/50 transition-all duration-200 ${isCyber
+                            ? 'bg-[#121622] hover:bg-[#182030] hover:text-cyan-300 hover:border-cyan-500/40'
+                            : 'bg-[#2a2a30] hover:bg-[#35353d] hover:text-white'
+                            } ${transitionUrl === github
                                 ? 'bg-gray-700 cursor-not-allowed opacity-50'
                                 : ''
-                        }`}
+                            }`}
                         aria-label="GitHub Repository"
                     >
                         <FaGithub className="text-[15px]" />
@@ -443,8 +448,8 @@ export default function ProjectCard({ project, variant = 'default', index = 0, p
                             {transitionUrl === github
                                 ? 'Loading...'
                                 : isCyber
-                                ? 'Source //'
-                                : 'GitHub'}
+                                    ? 'Source //'
+                                    : 'Code'}
                         </span>
                     </a>
                 )}
